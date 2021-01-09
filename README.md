@@ -1,5 +1,5 @@
-# bootloaders
-boot methods for various architectures
+# Bootloaders
+Boot methods for loading Oberon on various architectures.
 
 Each architecture and system board or emulator needs a tailored boot process.
 

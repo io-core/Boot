@@ -35,6 +35,8 @@ if [ "$tools" == "available" ] ; then
   if [ ! -f ./Startup.batch ] ; then
 	echo "Need a Startup.batch file to generate binaries from Oberon sources. Please provide."
   else
+	echo "Building Oberon Core for supported architectures."
+
   fi
 
 fi

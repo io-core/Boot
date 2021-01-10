@@ -1,0 +1,4 @@
+Batch.Run
+|> System.SetFont unifont.Scn.Fnt
+|> System.Watch
+||

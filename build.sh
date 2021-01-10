@@ -32,7 +32,7 @@ fi
 
 if [ "$tools" == "available" ] ; then
 
-  if [ ! -f ./Startup.batch ] ; then
+  if [ ! -f ./Startup.Job ] ; then
 	echo "Need a Startup.Job file to generate binaries from Oberon sources. Please provide."
   else
 	echo "Building Oberon Core for supported architectures."

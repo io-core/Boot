@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: GPL-2.0+ OR BSD-2-Clause */
 
 /*
- * boot-aa64.S - PE/COFF header and bootloader for aarch64 EFI
+ * boot-a64.S - PE/COFF header and bootloader for aarch64 EFI
  *
  * Copyright (C) 2021 Charles Perkins <charlesap@gmail.com>
  * Copyright (C) 2014 Linaro Ltd. <ard.biesheuvel@linaro.org>

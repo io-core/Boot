@@ -37,12 +37,12 @@ fi
 
 if [ "$tools" == "available" ] ; then
 
-  if [ ! -f ./Core.x64 ] ; then
-	echo "need ./Core.x64 to build BOOTX64.EFI. Skipping."
+  if [ ! -f ./Core.i64 ] ; then
+	echo "need ./Core.i64 to build BOOTX64.EFI. Skipping."
   else
 	echo "Building BOOTX64.EFI"
-	nasm -f bin x64/boot-x64.S -o BOOTX64.EFI
-	dd if=Core.x64 of=BOOTX64.EFI bs=1 seek=20480 conv=notrunc
+	nasm -f bin i64/boot-i64.S -o BOOTX64.EFI
+	dd if=Core.i64 of=BOOTX64.EFI bs=1 seek=20480 conv=notrunc
   fi
 
   if [ ! -f ./Core.a64 ] ; then
@@ -66,24 +66,24 @@ if [ "$tools" == "available" ] ; then
 	rm boot-a32.o boot-a32.elf
   fi
 
-  if [ ! -f ./Core.r64 ] ; then
-	echo "need ./Core.r64 to build BOOTRV64.EFI. Skipping."
+  if [ ! -f ./Core.v64 ] ; then
+	echo "need ./Core.v64 to build BOOTRV64.EFI. Skipping."
   else
 	echo "Building BOOTRV64.EFI"
-	${RISCVTOOLS}riscv64-unknown-elf-as -march=rv64imac r64/boot-r64.S -o boot-r64.o
-	${RISCVTOOLS}riscv64-unknown-elf-objcopy --dump-section PE=BOOTRV64.EFI boot-r64.o
-	dd if=Core.r64 of=BOOTRV64.EFI bs=1 seek=20480 conv=notrunc
-	rm boot-rv64.o
+	${RISCVTOOLS}riscv64-unknown-elf-as -march=rv64imac v64/boot-v64.S -o boot-v64.o
+	${RISCVTOOLS}riscv64-unknown-elf-objcopy --dump-section PE=BOOTRV64.EFI boot-v64.o
+	dd if=Core.v64 of=BOOTRV64.EFI bs=1 seek=20480 conv=notrunc
+	rm boot-v64.o
   fi
 
-  if [ ! -f ./Core.r32 ] ; then
-	echo "need ./Core.r32 to build BOOTRV32.BIN. Skipping."
+  if [ ! -f ./Core.v32 ] ; then
+	echo "need ./Core.v32 to build BOOTRV32.BIN. Skipping."
   else
 	echo "Building BOOTRV32.BIN"
-	${RISCVTOOLS}riscv64-unknown-elf-as r32/boot-r32.S -o boot-r32.o
-	${RISCVTOOLS}riscv64-unknown-elf-ld boot-r32.o -o boot-r32.elf
-	${RISCVTOOLS}riscv64-unknown-elf-objcopy -O binary --only-section=.text boot-r32.elf BOOTRV32.BIN
-	dd if=Core.r32 of=BOOTRV32.BIN bs=1 seek=20480 conv=notrunc
-	rm boot-r32.o boot-r32.elf
+	${RISCVTOOLS}riscv64-unknown-elf-as v32/boot-v32.S -o boot-v32.o
+	${RISCVTOOLS}riscv64-unknown-elf-ld boot-v32.o -o boot-v32.elf
+	${RISCVTOOLS}riscv64-unknown-elf-objcopy -O binary --only-section=.text boot-v32.elf BOOTRV32.BIN
+	dd if=Core.v32 of=BOOTRV32.BIN bs=1 seek=20480 conv=notrunc
+	rm boot-v32.o boot-v32.elf
   fi
 fi

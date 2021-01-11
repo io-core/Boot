@@ -40,6 +40,9 @@ if [ "$tools" == "available" ] ; then
 	rm -rf ./build/*
 	${OXFSTOOL} -o2f -i ${BASEIMAGE} -o ./build
 	cp ./Startup.Job ./build/
+
+	cp ../root/src/github.com/io-core/Build/HAL.*.Mod ./build/
+
 	mkdir -p ./result
 	rm -rf ./result/*
 	rm ./work.img
@@ -47,12 +50,12 @@ if [ "$tools" == "available" ] ; then
 	${EMULATOR} --mem 8 --size 1600x900x4 ./work.img
 	${OXFSTOOL} -o2f -i ./work.img -o result
 
-	mv result/HAL.rsc ./Core.rsc
-	mv result/HAL.i64 ./Core.i64
-	mv result/HAL.a64 ./Core.a64
-	mv result/HAL.a32 ./Core.a32
-	mv result/HAL.v64 ./Core.v64
-	mv result/HAL.v32 ./Core.v32
+	mv result/HAL.rsc bin/Core.rsc
+	mv result/HAL.i64 bin/Core.i64
+	mv result/HAL.a64 bin/Core.a64
+	mv result/HAL.a32 bin/Core.a32
+	mv result/HAL.v64 bin/Core.v64
+	mv result/HAL.v32 bin/Core.v32
 
 	rm -rf result
 	rm -rf build

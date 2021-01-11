@@ -19,21 +19,39 @@ if [ ! -f ${RISCVTOOLS}riscv64-unknown-elf-as ] ; then
 	tools="unavailable"
 fi
 
+what=$1
 
-
+if [ "$what" == "" ]; then
+	what="all"
+fi
 
 
 if [ "$tools" == "available" ] ; then
   
-  objdump -b binary -D -m i386:x86-64 Core.i64
-  echo
-  ${AA64TOOLS}aarch64-none-linux-gnu-objdump -b binary -D -m aarch64 bin/Core.a64
-  echo
-  ${AA32TOOLS}objdump -b binary -D -m cortex-a9 bin/Core.a32
-  echo
-  ${RISCVTOOLS}riscv64-unknown-elf-objdump -b binary -D -m riscv:rv64 bin/Core.v64
-  echo
-  ${RISCVTOOLS}riscv64-unknown-elf-objdump -b binary -D -m riscv:rv32 bin/Core.v32
+  if [ "$what" == "i64" ] || [ "$what" == "all" ] ; then
+    objdump -b binary -D -m i386:x86-64 bin/Core.i64
+    echo
+  fi
+
+  if [ "$what" == "a64" ] || [ "$what" == "all" ] ; then
+    ${AA64TOOLS}aarch64-none-linux-gnu-objdump -b binary -D -m aarch64 bin/Core.a64
+    echo
+  fi
+
+  if [ "$what" == "a32" ] || [ "$what" == "all" ] ; then
+    ${AA32TOOLS}objdump -b binary -D -m cortex-a9 bin/Core.a32
+    echo
+  fi
+
+  if [ "$what" == "v64" ] || [ "$what" == "all" ] ; then
+    ${RISCVTOOLS}riscv64-unknown-elf-objdump -b binary -D -m riscv:rv64 bin/Core.v64
+    echo
+  fi
+
+  if [ "$what" == "v32" ] || [ "$what" == "all" ] ; then
+    ${RISCVTOOLS}riscv64-unknown-elf-objdump -b binary -D -m riscv:rv32 bin/Core.v32
+  fi
+  
 
 fi
 

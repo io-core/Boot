@@ -36,7 +36,26 @@ if [ "$tools" == "available" ] ; then
 	echo "Need a Startup.Job file to generate binaries from Oberon sources. Please provide."
   else
 	echo "Building Oberon Core for supported architectures."
+	mkdir -p ./build
+	rm -rf ./build/*
+	${OXFSTOOL} -o2f -i ${BASEIMAGE} -o ./build
+	cp ./Startup.Job ./build/
+	mkdir -p ./result
+	rm -rf ./result/*
+	rm ./work.img
+	${OXFSTOOL} -f2o -i build -o ./work.img -s 8M
+	${EMULATOR} --mem 8 --size 1600x900x4 ./work.img
+	${OXFSTOOL} -o2f -i ./work.img -o result
 
+	mv result/HAL.rsc ./Core.rsc
+	mv result/HAL.i64 ./Core.i64
+	mv result/HAL.a64 ./Core.a64
+	mv result/HAL.a32 ./Core.a32
+	mv result/HAL.v64 ./Core.v64
+	mv result/HAL.v32 ./Core.v32
+
+	rm -rf result
+	rm -rf build
   fi
 
 fi

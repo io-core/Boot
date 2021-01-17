@@ -27,9 +27,21 @@ fi
 
 
 if [ "$tools" == "available" ] ; then
-  
+
+  if [ "$what" == "rsc" ] || [ "$what" == "all" ] ; then
+    echo 
+    echo "bin/Core.rsc:     file format binary"
+    echo
+    echo 
+    echo "Disassembly of section .data:"
+    echo
+    echo "00000000 <.data>:"
+    cat bin/Core.rsc | bash bin/5dis.sh
+    echo
+  fi
+
   if [ "$what" == "i64" ] || [ "$what" == "all" ] ; then
-    objdump -b binary -D -m i386:x86-64 bin/Core.i64
+    objdump -b binary -D -M intel -m i386:x86-64 bin/Core.i64
     echo
   fi
 

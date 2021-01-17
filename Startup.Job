@@ -1,9 +1,8 @@
 Batch.Run
 |> System.Watch
 |> ORP.Compile ORS.Mod/s ORB.Mod/s ~
-|> ORP.Compile OIG.Mod/s OAG.Mod/s OaG.Mod/s OVG.Mod/s OvG.Mod/s OIG.Mod/s ~ 
 |> ORP.Compile OXG.Mod/s ORG.Mod/s ORP.Mod/s ~
-|> System.Free ORP ORG OXG OIP OIG OAP OAG OaP OaG OVP OVG OvP OvG ORB ORS ~
+|> System.Free ORP ORG OXG ORB ORS ~
 |> Batch.Collect ~
 |> ORP.Compile ORDis.Mod/s OIDis.Mod/s OADis.Mod/s OaDis.Mod/s OvDis.Mod/s ~ 
 |> ORP.Compile OXDis.Mod/s OXTool.Mod/s ~
@@ -21,4 +20,10 @@ Batch.Run
 |> ORP.Compile HAL.r32.Mod/s/v M.Mod/s/v~
 |> Batch.Collect ~
 |> System.Watch
+|> System.CopyFiles HAL.i64 => Core.i64 ~
+|> System.CopyFiles HAL.a64 => Core.a64 ~
+|> System.CopyFiles HAL.a32 => Core.a32 ~
+|> System.CopyFiles HAL.v64 => Core.v64 ~
+|> System.CopyFiles HAL.v32 => Core.v32 ~
+|> Halt.Now ~
 ||

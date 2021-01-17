@@ -12,6 +12,7 @@
 EMULATOR=/opt/oberon/oberon-risc-emu/risc
 OXFSTOOL=/usr/bin/oxfstool
 BASEIMAGE=/opt/oberon/io/images/io.img
+OBERONSRC=/opt/oberon/io/root/src/github.com/io-core/Build/
 
 tools="available"
 
@@ -41,24 +42,38 @@ if [ "$tools" == "available" ] ; then
 	${OXFSTOOL} -o2f -i ${BASEIMAGE} -o ./build
 	cp ./Startup.Job ./build/
 
-	cp ../root/src/github.com/io-core/Build/HAL.*.Mod ./build/
+	cp ${OBERONSRC}/Build/HAL.*.Mod ./build/
+
+	cp ${OBERONSRC}/Build/ORP.Mod ./build/
+	cp ${OBERONSRC}/Build/ORG.Mod ./build/
+	cp ${OBERONSRC}/Build/OXG.Mod ./build/
+	cp ${OBERONSRC}/Build/ORB.Mod ./build/
+	cp ${OBERONSRC}/Build/ORS.Mod ./build/
+                          
+	cp ${OBERONSRC}/Build/ORLinker.Mod ./build/
+
+	cp ${OBERONSRC}/Build/OXTool.Mod ./build/
+	cp ${OBERONSRC}/Build/O.Dis.Mod ./build/
+	cp ${OBERONSRC}/Build/ORDis.Mod ./build/
+	cp ${OBERONSRC}/Build/OIDis.Mod ./build/
+	cp ${OBERONSRC}/Build/OaDis.Mod ./build/
+	cp ${OBERONSRC}/Build/OADis.Mod ./build/
+	cp ${OBERONSRC}/Build/OvDis.Mod ./build/
+
 
 	mkdir -p ./result
 	rm -rf ./result/*
 	rm ./work.img
 	${OXFSTOOL} -f2o -i build -o ./work.img -s 8M
-	${EMULATOR} --mem 8 --size 1600x900x4 ./work.img
+	${EMULATOR} --mem 8 --size 1600x900x1 ./work.img
 	${OXFSTOOL} -o2f -i ./work.img -o result
 
 	mv result/HAL.rsc bin/Core.rsc
-	mv result/HAL.i64 bin/Core.i64
-	mv result/HAL.a64 bin/Core.a64
-	mv result/HAL.a32 bin/Core.a32
-	mv result/HAL.v64 bin/Core.v64
-	mv result/HAL.v32 bin/Core.v32
+	mv result/Core.* bin/
 
-	rm -rf result
-	rm -rf build
+#	rm -rf result
+#	rm -rf build
+#	rm work.img
   fi
 
 fi

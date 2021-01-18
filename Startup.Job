@@ -9,7 +9,7 @@ Batch.Run
 |> Batch.Collect ~
 |> ORP.Compile HAL.rsc.Mod/s M.Mod/s~
 |> Batch.Collect ~
-|> ORP.Compile HAL.x64.Mod/s/I M.Mod/s/I~
+|> ORP.Compile HAL.i64.Mod/s/I M.Mod/s/I~
 |> Batch.Collect ~
 |> ORP.Compile HAL.a64.Mod/s/A M.Mod/s/A~
 |> Batch.Collect ~
@@ -20,10 +20,11 @@ Batch.Run
 |> ORP.Compile HAL.r32.Mod/s/v M.Mod/s/v~
 |> Batch.Collect ~
 |> System.Watch
+|> System.CopyFiles HAL.rsc => Core.rsc ~
 |> System.CopyFiles HAL.i64 => Core.i64 ~
 |> System.CopyFiles HAL.a64 => Core.a64 ~
 |> System.CopyFiles HAL.a32 => Core.a32 ~
 |> System.CopyFiles HAL.v64 => Core.v64 ~
 |> System.CopyFiles HAL.v32 => Core.v32 ~
-|> Halt.Now ~
+|> ~ 
 ||

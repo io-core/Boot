@@ -42,23 +42,23 @@ if [ "$tools" == "available" ] ; then
 	${OXFSTOOL} -o2f -i ${BASEIMAGE} -o ./build
 	cp ./Startup.Job ./build/
 
-	cp ${OBERONSRC}/Build/HAL.*.Mod ./build/
+	cp ${OBERONSRC}HAL.*.Mod ./build/
 
-	cp ${OBERONSRC}/Build/ORP.Mod ./build/
-	cp ${OBERONSRC}/Build/ORG.Mod ./build/
-	cp ${OBERONSRC}/Build/OXG.Mod ./build/
-	cp ${OBERONSRC}/Build/ORB.Mod ./build/
-	cp ${OBERONSRC}/Build/ORS.Mod ./build/
-                          
-	cp ${OBERONSRC}/Build/ORLinker.Mod ./build/
+	cp ${OBERONSRC}ORP.Mod ./build/
+	cp ${OBERONSRC}ORG.Mod ./build/
+	cp ${OBERONSRC}OXG.Mod ./build/
+	cp ${OBERONSRC}ORB.Mod ./build/
+	cp ${OBERONSRC}ORS.Mod ./build/
+                       
+	cp ${OBERONSRC}ORLinker.Mod ./build/
 
-	cp ${OBERONSRC}/Build/OXTool.Mod ./build/
-	cp ${OBERONSRC}/Build/O.Dis.Mod ./build/
-	cp ${OBERONSRC}/Build/ORDis.Mod ./build/
-	cp ${OBERONSRC}/Build/OIDis.Mod ./build/
-	cp ${OBERONSRC}/Build/OaDis.Mod ./build/
-	cp ${OBERONSRC}/Build/OADis.Mod ./build/
-	cp ${OBERONSRC}/Build/OvDis.Mod ./build/
+	cp ${OBERONSRC}OXTool.Mod ./build/
+	cp ${OBERONSRC}O.Dis.Mod ./build/
+	cp ${OBERONSRC}ORDis.Mod ./build/
+	cp ${OBERONSRC}OIDis.Mod ./build/
+	cp ${OBERONSRC}OaDis.Mod ./build/
+	cp ${OBERONSRC}OADis.Mod ./build/
+	cp ${OBERONSRC}OvDis.Mod ./build/
 
 
 	mkdir -p ./result

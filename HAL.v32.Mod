@@ -15,6 +15,10 @@ MODULE* HAL;
   VAR
 
 
+  (* begin-procedure-description
+---
+**Init** simply returns.
+  end-procedure-description *)
 PROCEDURE Init;
   VAR x, y, z: INTEGER;
 BEGIN
@@ -31,6 +35,10 @@ BEGIN
 END Init;
 
 
+  (* begin-procedure-description
+---
+**The initialzation code for this module** calls Init and then goes into an infinite loop.
+  end-procedure-description *)
 BEGIN Init;
   WHILE TRUE DO END
 END HAL.

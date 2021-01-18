@@ -12,6 +12,8 @@ MODULE* HAL;
 
   TYPE
 
+  VAR
+
 
 PROCEDURE Init;
   VAR x, y, z: INTEGER;

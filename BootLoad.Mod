@@ -11,6 +11,8 @@ See https://github.com/io/Bootloaders for usage.
 
 
 ### _Modules in this package:_
+end-package-description *)
+
 (* begin-module-use-description
 Module BootLoad is the firmware for the RISC Oberon platform.
 
@@ -18,6 +20,7 @@ Module BootLoad is the firmware for the RISC Oberon platform.
     ORF.WriteFile BootLoad.rsc prom.mem ~                      
 
 end-module-use-description *)
+
 (* begin-module-develop-description
 
 (NW 20.10.2013 / PR 4.2.2014; boot from SDHC disk or line)

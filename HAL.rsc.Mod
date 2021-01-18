@@ -1,9 +1,9 @@
 (* begin-module-use-description
-Module BareMetalR exercises features of the compiler in bringing Oberon up from bare metal on RISC5.
+Module HAL (.rsc) exercises features of the compiler in bringing Oberon up from bare metal on RISC5.
 
 end-module-use-description *)
 (* begin-module-develop-description
-Module BareMetalR exercises features of the compiler in bringing Oberon up from bare metal on RISC5.
+Module HAL (.rsc) exercises features of the compiler in bringing Oberon up from bare metal on RISC5.
 
 end-module-develop-description *)
 MODULE* HAL;

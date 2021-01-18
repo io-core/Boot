@@ -1,9 +1,9 @@
 (* begin-module-use-description
-Module BareMetalA exercises features of the compiler in bringing Oberon up from bare metal on aarch64.
+Module HAL (.a64) exercises features of the compiler in bringing Oberon up from bare metal on aarch64.
 
 end-module-use-description *)
 (* begin-module-develop-description
-Module BareMetalA exercises features of the compiler in bringing Oberon up from bare metal on aarch64.
+Module HAL (.a64) exercises features of the compiler in bringing Oberon up from bare metal on aarch64.
 
 end-module-develop-description *)
 MODULE* HAL;

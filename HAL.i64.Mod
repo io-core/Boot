@@ -1,9 +1,9 @@
 (* begin-module-use-description
-Module BareMetalI exercises features of the compiler in bringing Oberon up from bare metal on x86_64.
+Module HAL (.i64) exercises features of the compiler in bringing Oberon up from bare metal on x86_64.
 
 end-module-use-description *)
 (* begin-module-develop-description
-Module BareMetalI exercises features of the compiler in bringing Oberon up from bare metal on x86_64.
+Module HAL (.i64) exercises features of the compiler in bringing Oberon up from bare metal on x86_64.
 
 end-module-develop-description *)
 MODULE* HAL;

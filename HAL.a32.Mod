@@ -1,9 +1,9 @@
 (* begin-module-use-description
-Module BareMetala exercises features of the compiler in bringing Oberon up from bare metal on 32-bit ARM.
+Module HAL (.a32) exercises features of the compiler in bringing Oberon up from bare metal on 32-bit ARM.
 
 end-module-use-description *)
 (* begin-module-develop-description
-Module BareMetala exercises features of the compiler in bringing Oberon up from bare metal on 32-bit ARM..
+Module HAL (.a32) exercises features of the compiler in bringing Oberon up from bare metal on 32-bit ARM..
 
 end-module-develop-description *)
 MODULE* HAL;

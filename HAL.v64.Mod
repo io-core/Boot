@@ -1,9 +1,9 @@
 (* begin-module-use-description
-Module BareMetalV exercises features of the compiler in bringing Oberon up from bare metal on 64-bit RISCV.
+Module HAL (.v64)  exercises features of the compiler in bringing Oberon up from bare metal on 64-bit RISCV.
 
 end-module-use-description *)
 (* begin-module-develop-description
-Module BareMetalV exercises features of the compiler in bringing Oberon up from bare metal on 64-bit RISCV.
+Module HAL (.v64)  exercises features of the compiler in bringing Oberon up from bare metal on 64-bit RISCV.
 
 end-module-develop-description *)
 MODULE* HAL;

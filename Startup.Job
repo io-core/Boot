@@ -15,9 +15,9 @@ Batch.Run
 |> Batch.Collect ~
 |> ORP.Compile HAL.a32.Mod/s/a M.Mod/s/a~
 |> Batch.Collect ~
-|> ORP.Compile HAL.r64.Mod/s/V M.Mod/s/V~
+|> ORP.Compile HAL.v64.Mod/s/V M.Mod/s/V~
 |> Batch.Collect ~
-|> ORP.Compile HAL.r32.Mod/s/v M.Mod/s/v~
+|> ORP.Compile HAL.v32.Mod/s/v M.Mod/s/v~
 |> Batch.Collect ~
 |> System.Watch
 |> System.CopyFiles HAL.rsc => Core.rsc ~

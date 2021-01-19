@@ -12,7 +12,8 @@
 EMULATOR=/opt/oberon/oberon-risc-emu/risc
 OXFSTOOL=/usr/bin/oxfstool
 BASEIMAGE=/opt/oberon/io/images/io.img
-OBERONSRC=/opt/oberon/io/root/src/github.com/io-core/Build/
+OBERONBLDSRC=/opt/oberon/io/root/src/github.com/io-core/Build/
+OBERONHALSRC=/opt/oberon/io/root/src/github.com/io-core/Bootloaders/
 
 tools="available"
 
@@ -42,23 +43,23 @@ if [ "$tools" == "available" ] ; then
 	${OXFSTOOL} -o2f -i ${BASEIMAGE} -o ./build
 	cp ./Startup.Job ./build/
 
-	cp ${OBERONSRC}HAL.*.Mod ./build/
+	cp ${OBERONHALSRC}HAL.*.Mod ./build/
 
-	cp ${OBERONSRC}ORP.Mod ./build/
-	cp ${OBERONSRC}ORG.Mod ./build/
-	cp ${OBERONSRC}OXG.Mod ./build/
-	cp ${OBERONSRC}ORB.Mod ./build/
-	cp ${OBERONSRC}ORS.Mod ./build/
+	cp ${OBERONBLDSRC}ORP.Mod ./build/
+	cp ${OBERONBLDSRC}ORG.Mod ./build/
+	cp ${OBERONBLDSRC}OXG.Mod ./build/
+	cp ${OBERONBLDSRC}ORB.Mod ./build/
+	cp ${OBERONBLDSRC}ORS.Mod ./build/
                        
-	cp ${OBERONSRC}ORLinker.Mod ./build/
+	cp ${OBERONBLDSRC}ORLinker.Mod ./build/
 
-	cp ${OBERONSRC}OXTool.Mod ./build/
-	cp ${OBERONSRC}O.Dis.Mod ./build/
-	cp ${OBERONSRC}ORDis.Mod ./build/
-	cp ${OBERONSRC}OIDis.Mod ./build/
-	cp ${OBERONSRC}OaDis.Mod ./build/
-	cp ${OBERONSRC}OADis.Mod ./build/
-	cp ${OBERONSRC}OvDis.Mod ./build/
+	cp ${OBERONBLDSRC}OXTool.Mod ./build/
+	cp ${OBERONBLDSRC}O.Dis.Mod ./build/
+#	cp ${OBERONBLDSRC}ORDis.Mod ./build/
+#	cp ${OBERONBLDSRC}OIDis.Mod ./build/
+#	cp ${OBERONBLDSRC}OaDis.Mod ./build/
+#	cp ${OBERONBLDSRC}OADis.Mod ./build/
+#	cp ${OBERONBLDSRC}OvDis.Mod ./build/
 
 
 	mkdir -p ./result

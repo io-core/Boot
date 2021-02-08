@@ -7,8 +7,11 @@ Module HAL (.a64) exercises features of the compiler in bringing Oberon up from 
 
 end-module-develop-description *)
 MODULE* HAL;
+  IMPORT SYSTEM;
   
   CONST
+    rsData = -56; 
+    rsCtrl = -52;
 
   TYPE
 
@@ -22,6 +25,7 @@ MODULE* HAL;
 PROCEDURE Init( i: INTEGER);
   VAR x, y, z: INTEGER;
 BEGIN
+  SYSTEM.PUT(rsData,i)
 (*
   LED(1); z := 0;
   REPEAT LED(z); x := 1000;
@@ -39,6 +43,6 @@ END Init;
 ---
 **The initialzation code for this module** calls Init and then goes into an infinite loop.
   end-procedure-description *)
-BEGIN Init(42);
+BEGIN Init(65);
   WHILE TRUE DO END
 END HAL.

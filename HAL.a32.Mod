@@ -10,8 +10,10 @@ MODULE* HAL;
   IMPORT SYSTEM;
   
   CONST
-    rsData = -56; 
-    rsCtrl = -52;
+    MTOrg    = 40001000H;
+    rsData   = 9000000H; 
+    rsCtrl   = -52;
+    MT = 12; SP = 14; LNK = 15;   (*dedicated registers RISC5 ordinal*)
 
   TYPE
 
@@ -43,6 +45,7 @@ END Init;
 ---
 **The initialzation code for this module** calls Init and then goes into an infinite loop.
   end-procedure-description *)
-BEGIN Init(65);
+BEGIN SYSTEM.LDREG(MT, MTOrg); 
+      Init(ORD("O")); Init(ORD("b")); Init(ORD("e")); Init(ORD("r")); Init(ORD("o")); Init(ORD("n"));
   WHILE TRUE DO END
 END HAL.

@@ -43,6 +43,6 @@ END Init;
 ---
 **The initialzation code for this module** calls Init and then goes into an infinite loop.
   end-procedure-description *)
-BEGIN Init(65);
+BEGIN Init(ORD("O")); Init(ORD("b")); Init(ORD("e")); Init(ORD("r")); Init(ORD("o")); Init(ORD("n")); 
   WHILE TRUE DO END
 END HAL.

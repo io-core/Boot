@@ -36,32 +36,32 @@ if [ "$tools" == "available" ] ; then
     echo "Disassembly of section .data:"
     echo
     echo "00000000 <.data>:"
-    cat bin/Core.rsc | bash bin/5dis.sh
+    cat bin/Core.rsc.qemu | bash bin/5dis.sh
     echo
   fi
 
   if [ "$what" == "i64" ] || [ "$what" == "all" ] ; then
-    objdump -b binary -D -M intel -m i386:x86-64 bin/Core.i64
+    objdump -b binary -D -M intel -m i386:x86-64 bin/Core.i64.qemu
     echo
   fi
 
   if [ "$what" == "a64" ] || [ "$what" == "all" ] ; then
-    ${AA64TOOLS}aarch64-none-linux-gnu-objdump -b binary -D -m aarch64 bin/Core.a64
+    ${AA64TOOLS}aarch64-none-linux-gnu-objdump -b binary -D -m aarch64 bin/Core.a64.qemu
     echo
   fi
 
   if [ "$what" == "a32" ] || [ "$what" == "all" ] ; then
-    ${AA32TOOLS}objdump -b binary -D -m cortex-a9 bin/Core.a32
+    ${AA32TOOLS}objdump -b binary -D -m cortex-a9 -Mreg-names-raw bin/Core.a32.qemu
     echo
   fi
 
   if [ "$what" == "v64" ] || [ "$what" == "all" ] ; then
-    ${RISCVTOOLS}riscv64-unknown-elf-objdump -b binary -D -m riscv:rv64 bin/Core.v64
+    ${RISCVTOOLS}riscv64-unknown-elf-objdump -b binary -D -m riscv:rv64 -Mnumeric,no-aliases bin/Core.v64.qemu
     echo
   fi
 
   if [ "$what" == "v32" ] || [ "$what" == "all" ] ; then
-    ${RISCVTOOLS}riscv64-unknown-elf-objdump -b binary -D -m riscv:rv32 bin/Core.v32
+    ${RISCVTOOLS}riscv64-unknown-elf-objdump -b binary -D -m riscv:rv32 -Mnumeric,no-aliases bin/Core.v32.qemu
   fi
   
 

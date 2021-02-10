@@ -42,7 +42,7 @@ if [ "$tools" == "available" ] ; then
   else
 	echo "Building BOOTX64.EFI"
 	nasm -f bin i64/boot-i64.S -o bin/BOOTX64.EFI
-	dd if=bin/Core.i64 of=bin/BOOTX64.EFI bs=1 seek=20480 conv=notrunc
+	dd if=bin/Core.i64.qemu of=bin/BOOTX64.EFI bs=1 seek=20480 conv=notrunc
   fi
 
   if [ ! -f bin/Core.a64 ] ; then
@@ -51,8 +51,8 @@ if [ "$tools" == "available" ] ; then
 	echo "Building BOOTAA64.EFI"
 	${AA64TOOLS}aarch64-none-linux-gnu-as a64/boot-a64.S -o boot-a64.o
 	${AA64TOOLS}aarch64-none-linux-gnu-objcopy --dump-section PE=bin/BOOTAA64.EFI boot-a64.o
-	dd if=bin/Core.a64 of=bin/BOOTAA64.EFI bs=1 seek=20480 conv=notrunc
-	rm boot-a64.o
+	dd if=bin/Core.a64.qemu of=bin/BOOTAA64.EFI bs=1 seek=20480 conv=notrunc
+	#rm boot-a64.o
   fi
 
   if [ ! -f bin/Core.a32 ] ; then
@@ -62,8 +62,8 @@ if [ "$tools" == "available" ] ; then
 	${AA32TOOLS}as -mcpu=cortex-a9  a32/boot-a32.S -o boot-a32.o
 	${AA32TOOLS}ld -T a32/boot-a32.ld boot-a32.o -o boot-a32.elf
 	${AA32TOOLS}objcopy -O binary --only-section=.text boot-a32.elf bin/BOOTAA32.BIN
-	dd if=bin/Core.a32 of=bin/BOOTAA32.BIN bs=1 seek=20480 conv=notrunc
-	rm boot-a32.o boot-a32.elf
+	dd if=bin/Core.a32.qemu of=bin/BOOTAA32.BIN bs=1 seek=20480 conv=notrunc
+	#rm boot-a32.o boot-a32.elf
   fi
 
   if [ ! -f bin/Core.v64 ] ; then
@@ -72,7 +72,7 @@ if [ "$tools" == "available" ] ; then
 	echo "Building BOOTRV64.EFI"
 	${RISCVTOOLS}riscv64-unknown-elf-as -march=rv64imac v64/boot-v64.S -o boot-v64.o
 	${RISCVTOOLS}riscv64-unknown-elf-objcopy --dump-section PE=bin/BOOTRV64.EFI boot-v64.o
-	dd if=bin/Core.v64 of=bin/BOOTRV64.EFI bs=1 seek=20480 conv=notrunc
+	dd if=bin/Core.v64.qemu of=bin/BOOTRV64.EFI bs=1 seek=20480 conv=notrunc
 	rm boot-v64.o
   fi
 
@@ -83,7 +83,7 @@ if [ "$tools" == "available" ] ; then
 	${RISCVTOOLS}riscv64-unknown-elf-as v32/boot-v32.S -o boot-v32.o
 	${RISCVTOOLS}riscv64-unknown-elf-ld boot-v32.o -o boot-v32.elf
 	${RISCVTOOLS}riscv64-unknown-elf-objcopy -O binary --only-section=.text boot-v32.elf bin/BOOTRV32.BIN
-	dd if=bin/Core.v32 of=bin/BOOTRV32.BIN bs=1 seek=20480 conv=notrunc
+	dd if=bin/Core.v32.qemu of=bin/BOOTRV32.BIN bs=1 seek=20480 conv=notrunc
 	rm boot-v32.o boot-v32.elf
   fi
 fi

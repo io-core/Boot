@@ -1,9 +1,19 @@
 (* begin-module-use-description
-Module HAL (.rsc) exercises features of the compiler in bringing Oberon up from bare metal on RISC5.
+Module HAL (.i64) exercises features of the compiler in bringing Oberon up from bare metal on x86_64.
 
 end-module-use-description *)
 (* begin-module-develop-description
-Module HAL (.rsc) exercises features of the compiler in bringing Oberon up from bare metal on RISC5.
+The HAL prepares the Oberon runtime and so cannot rely on it.
+
+* No global variables
+* No strings
+* No heap allocation
+
+The first thing HAL must do is set up its own stack.
+
+Each platform should have its own HAL. This is the HAL for x86_64 on QEMU.
+
+The HAL remains resident and may be used by other modules.
 
 end-module-develop-description *)
 MODULE* HAL;
@@ -43,6 +53,6 @@ END Init;
 ---
 **The initialzation code for this module** calls Init and then goes into an infinite loop.
   end-procedure-description *)
-BEGIN  Init(ORD("O")); Init(ORD("b")); Init(ORD("e")); Init(ORD("r")); Init(ORD("o")); Init(ORD("n"));
+BEGIN Init(ORD("O")); Init(ORD("b")); Init(ORD("e")); Init(ORD("r")); Init(ORD("o")); Init(ORD("n")); 
   WHILE TRUE DO END
 END HAL.

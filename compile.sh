@@ -41,6 +41,8 @@ if [ "$tools" == "available" ] ; then
 	mkdir -p ./build
 	rm -rf ./build/*
 	${OXFSTOOL} -o2f -i ${BASEIMAGE} -o ./build
+
+        rm ./build/x[987].txt
 	cp ./Startup.Job ./build/
 
 	cp ${OBERONHALSRC}HAL.*.Mod ./build/

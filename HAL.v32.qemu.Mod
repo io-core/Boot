@@ -3,7 +3,17 @@ Module HAL (.v32) exercises features of the compiler in bringing Oberon up from 
 
 end-module-use-description *)
 (* begin-module-develop-description
-Module HAL (.v32) exercises features of the compiler in bringing Oberon up from bare metal on 32-bit RISCV.
+The HAL prepares the Oberon runtime and so cannot rely on it. 
+
+* No global variables
+* No strings
+* No heap allocation
+
+The first thing HAL must do is set up its own stack.
+
+Each platform should have its own HAL. This is the HAL for riscv32 on QEMU.
+
+The HAL remains resident and may be used by other modules.
 
 end-module-develop-description *)
 MODULE* HAL;
@@ -13,12 +23,12 @@ MODULE* HAL;
     stackOrg = 87FFF000H;
     MTOrg    = 80001000H;
     rsData   = 10000000H;
-    rsCtrl   = -52;
     MT = 12; SP = 14; LNK = 15;   (*dedicated registers RISC5 ordinal*)
 
   TYPE
 
   VAR
+
 
 
   (* begin-procedure-description

@@ -30,15 +30,31 @@ MODULE* HAL;
   VAR
 
 
+  (* begin-procedure-description
+---
+**Greet** Transmits a greeting on the serial port.
+  end-procedure-description *)
+PROCEDURE Greet;
+BEGIN
+  SYSTEM.PUT(rsData,ORD("O"));
+  SYSTEM.PUT(rsData,ORD("b"));
+  SYSTEM.PUT(rsData,ORD("e"));
+  SYSTEM.PUT(rsData,ORD("r"));
+  SYSTEM.PUT(rsData,ORD("o"));
+  SYSTEM.PUT(rsData,ORD("n"));
+  SYSTEM.PUT(rsData,13);
+  SYSTEM.PUT(rsData,10);
+END Greet;
+
 
   (* begin-procedure-description
 ---
-**Init** simply returns.
+**Init** queries the system configuration, establishes the module store and the heap, and passes control to the Kernel.
   end-procedure-description *)
-PROCEDURE Init( i: INTEGER);
+PROCEDURE Init;
   VAR x, y, z: INTEGER;
 BEGIN
-  SYSTEM.PUT(rsData,i) 
+
 (*
   LED(1); z := 0;
   REPEAT LED(z); x := 1000;
@@ -49,14 +65,17 @@ BEGIN
      z := z+1
   UNTIL FALSE
 *)
+
 END Init;
 
 
   (* begin-procedure-description
 ---
-**The initialzation code for this module** calls Init and then goes into an infinite loop.
+**The initialzation code for this module** establishes the stack and module table origin, transmits a greeting, and then calls Init.
   end-procedure-description *)
-BEGIN SYSTEM.LDREG(SP, stackOrg); SYSTEM.LDREG(MT, MTOrg); 
-      Init(ORD("O")); Init(ORD("b")); Init(ORD("e")); Init(ORD("r")); Init(ORD("o")); Init(ORD("n")); 
-  WHILE TRUE DO END
+BEGIN SYSTEM.LDREG(SP, stackOrg); 
+      SYSTEM.LDREG(MT, MTOrg); 
+      Greet;
+      Init;
+      WHILE TRUE DO END
 END HAL.

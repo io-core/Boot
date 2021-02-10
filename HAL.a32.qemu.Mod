@@ -23,7 +23,7 @@ MODULE* HAL;
     stackOrg = 47FFF000H;
     MTOrg    = 40001000H;
     rsData   = 9000000H; 
-    rsCtrl   = -52;
+    FDTLoc   = 48000000H; (* At start R02 holds the location of the FDTB *)
     MT = 12; SP = 14; LNK = 15;   (*dedicated registers RISC5 ordinal*)
 
   TYPE

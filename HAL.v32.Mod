@@ -10,8 +10,11 @@ MODULE* HAL;
   IMPORT SYSTEM;
   
   CONST
-    rsData = -56; 
-    rsCtrl = -52;
+    stackOrg = 87FFF000H;
+    MTOrg    = 80001000H;
+    rsData   = 10000000H;
+    rsCtrl   = -52;
+    MT = 12; SP = 14; LNK = 15;   (*dedicated registers RISC5 ordinal*)
 
   TYPE
 
@@ -25,7 +28,7 @@ MODULE* HAL;
 PROCEDURE Init( i: INTEGER);
   VAR x, y, z: INTEGER;
 BEGIN
-  SYSTEM.PUT(rsData,i)
+  SYSTEM.PUT(rsData,i) 
 (*
   LED(1); z := 0;
   REPEAT LED(z); x := 1000;
@@ -43,6 +46,7 @@ END Init;
 ---
 **The initialzation code for this module** calls Init and then goes into an infinite loop.
   end-procedure-description *)
-BEGIN Init(ORD("O")); Init(ORD("b")); Init(ORD("e")); Init(ORD("r")); Init(ORD("o")); Init(ORD("n")); 
+BEGIN SYSTEM.LDREG(SP, stackOrg); SYSTEM.LDREG(MT, MTOrg); 
+      Init(ORD("O")); Init(ORD("b")); Init(ORD("e")); Init(ORD("r")); Init(ORD("o")); Init(ORD("n")); 
   WHILE TRUE DO END
 END HAL.

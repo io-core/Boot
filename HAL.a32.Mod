@@ -10,6 +10,7 @@ MODULE* HAL;
   IMPORT SYSTEM;
   
   CONST
+    stackOrg = 47FFF000H;
     MTOrg    = 40001000H;
     rsData   = 9000000H; 
     rsCtrl   = -52;
@@ -45,7 +46,7 @@ END Init;
 ---
 **The initialzation code for this module** calls Init and then goes into an infinite loop.
   end-procedure-description *)
-BEGIN SYSTEM.LDREG(MT, MTOrg); 
+BEGIN SYSTEM.LDREG(SP, stackOrg); SYSTEM.LDREG(MT, MTOrg); 
       Init(ORD("O")); Init(ORD("b")); Init(ORD("e")); Init(ORD("r")); Init(ORD("o")); Init(ORD("n"));
   WHILE TRUE DO END
 END HAL.

@@ -1,12 +1,12 @@
 k,v1,v2
-package,Bootloaders,v5.0.20140204
+package,Boot,v5.0.20140204
 from,github.com/io-core,whenever
 license,PROJECTOBERON,NW
 doc,core, Brings the Oberon Inner Core into memory and passes control to it.
 p,BootLoad.Mod,
-p,HAL.rsc.Mod,
-p,HAL.a32.Mod,
-p,HAL.a64.Mod,
-p,HAL.i64.Mod,
-p,HAL.v32.Mod,
-p,HAL.v64.Mod,
+p,HAL.rsc.qemu.Mod,
+p,HAL.a32.qemu.Mod,
+p,HAL.a64.qemu.Mod,
+p,HAL.i64.qemu.Mod,
+p,HAL.v32.qemu.Mod,
+p,HAL.v64.qemu.Mod,

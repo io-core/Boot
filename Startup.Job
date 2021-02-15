@@ -7,24 +7,24 @@ Batch.Run
 |> ORP.Compile ORDis.Mod/s OIDis.Mod/s OADis.Mod/s OaDis.Mod/s OvDis.Mod/s ~ 
 |> ORP.Compile OXDis.Mod/s OXTool.Mod/s ~
 |> Batch.Collect ~
-|> ORP.Compile HAL.rsc.Mod/s M.Mod/s~
+|> ORP.Compile HAL.rsc.qemu.Mod/s M.Mod/s~
+|> System.CopyFiles HAL.rsc => Core.rsc.qemu ~
 |> Batch.Collect ~
-|> ORP.Compile HAL.i64.Mod/s/I M.Mod/s/I~
+|> ORP.Compile HAL.i64.qemu.Mod/s/I M.Mod/s/I~
+|> System.CopyFiles HAL.i64 => Core.i64.qemu ~
 |> Batch.Collect ~
-|> ORP.Compile HAL.a64.Mod/s/A M.Mod/s/A~
+|> ORP.Compile HAL.a64.qemu.Mod/s/A M.Mod/s/A~
+|> System.CopyFiles HAL.a64 => Core.a64.qemu ~
 |> Batch.Collect ~
-|> ORP.Compile HAL.a32.Mod/s/a M.Mod/s/a~
+|> ORP.Compile HAL.a32.qemu.Mod/s/a M.Mod/s/a~
+|> System.CopyFiles HAL.a32 => Core.a32.qemu ~
 |> Batch.Collect ~
-|> ORP.Compile HAL.v64.Mod/s/V M.Mod/s/V~
+|> ORP.Compile HAL.v64.qemu.Mod/s/V M.Mod/s/V~
+|> System.CopyFiles HAL.v64 => Core.v64.qemu ~
 |> Batch.Collect ~
-|> ORP.Compile HAL.v32.Mod/s/v M.Mod/s/v~
+|> ORP.Compile HAL.v32.qemu.Mod/s/v M.Mod/s/v~
+|> System.CopyFiles HAL.v32 => Core.v32.qemu ~
 |> Batch.Collect ~
 |> System.Watch
-|> System.CopyFiles HAL.rsc => Core.rsc ~
-|> System.CopyFiles HAL.i64 => Core.i64 ~
-|> System.CopyFiles HAL.a64 => Core.a64 ~
-|> System.CopyFiles HAL.a32 => Core.a32 ~
-|> System.CopyFiles HAL.v64 => Core.v64 ~
-|> System.CopyFiles HAL.v32 => Core.v32 ~
 |> ~ 
 ||

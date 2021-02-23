@@ -1,10 +1,11 @@
 (* begin-package-description
-### _Package Overview:_
+
+**About**
+
 The Boot package manages:
+
 * Loading the Oberon inner core from boot media
 * Passing hardware configuration (FDT or UEFI table) to the Oberon Kernel
-
-### _Package Use:_
 
 Each architecture may have several specific implementations of a Hardware Abastraction Layer.  For example:
 
@@ -18,10 +19,18 @@ Each compilation or cross-compilation of Oberon will import only one of the HAL 
 
 The Bootloaders package also contains shell scripts used outside of Oberon to prepare an Oberon UEFI or raw binary image.
 
-See https://github.com/io/Bootloaders for usage.
+**Usage**
 
+Generating a new Integrated Oberon image suitable for booting requires the following steps:
 
-### _Modules in this package:_
+1. Compile the Inner Core modules (HAL, Kernel, FileDir, Files, Modules)
+#. Collect the compiled HAL, Kernel, FileDir, Files, and Modules binary modules
+#. Assemble the boot-<architecture>.S UEFI PE shim or ELF header shim
+#. Place the Oberon modules at appropriate offsets in the PE or ELF shim
+#. Place the PE or ELF file on the boot media or in the device firmware
+#. Place IO distribution files in the root media
+#. Boot
+
 end-package-description *)
 
 (* begin-module-short-description

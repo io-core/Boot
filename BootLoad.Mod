@@ -1,6 +1,6 @@
 (* begin-package-description
 ### _Package Overview:_
-The Bootloaders package manages:
+The Boot package manages:
 * Loading the Oberon inner core from boot media
 * Passing hardware configuration (FDT or UEFI table) to the Oberon Kernel
 
@@ -22,6 +22,10 @@ See https://github.com/io/Bootloaders for usage.
 
 ### _Modules in this package:_
 end-package-description *)
+
+(* begin-module-short-description
+loads the Inner Core from disk or serial.
+end-module-short-description *)
 
 (* begin-module-use-description
 Module BootLoad is the firmware for the RISC Oberon platform.

@@ -63,6 +63,21 @@ Over:
 	str r0, [r1]	
 
 	B .
+foo:
+	mov r3, r4
+	sub r1, r2, r3
+	add r1, r2, r3
+	sub r1, r2, #4
+	add r1, r2, #4
+        str r5, [sp]
+	ldr r5, [sp, #4]
+	lsl r3, #2
+        ror r4, #4
+        asr r5, #7
+	mov r0, #-56
+	mov r1, #65
+	bl foo
+        b foo
 heel:
 
         .fill 262144 + 8192 + 4096 

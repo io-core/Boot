@@ -160,7 +160,7 @@ over:
         add     a4, a4, 48     # * memmapdescver
         jalr    ra, 0
 
-	j	FixAt
+	j	payload  # fixat
 
 EfiEnd:
         .fill   256 - (EfiEnd - CodeStart)
@@ -202,6 +202,7 @@ FixAt:
         li	a0, 10
         sb	a0, (a1)
 
+lp:	j lp
 
 #  Bus  0, device   1, function 0:
 #    Display controller: PCI device 1234:1111

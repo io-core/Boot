@@ -187,7 +187,14 @@ Over:
         mov             x1, x28
 	ldr		x1, [x1, #56]	// memmapkey
 	blr		x8		
-        b		FixAt
+        b		payload + 0x1000  // FixAt
+	sub		sp, sp, #0x10
+	add		sp, sp, #0x10
+	ret
+	str		x30, [sp, #0]
+	ldr		x30, [sp, #0]
+	str		x30, [sp, #-8]
+	ldr		x30, [sp, #-8]
 EfiEnd:
         .fill   256 - (EfiEnd - CodeStart)
 FixAt:
@@ -292,6 +299,22 @@ zz:	strh	w0, [x1]
 
 loop:
         b               loop
+
+	movz x0, 0x7788
+	movk x0, 0x5566, lsl 16
+	movk x0, 0x3344, lsl 32
+	movk x0, 0x1122, lsl 48
+	mov  sp, x0
+	mov  sp, x1
+        mov  sp, x2
+        mov  sp, x3
+        mov  x0, sp
+        mov  x0, sp
+        mov  x1, sp
+        mov  x2, sp
+        mov x30, x1
+        mov x1, x30
+	
 
 CodeEnd:
                 .fill 4096 - (CodeEnd - CodeStart)

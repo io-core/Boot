@@ -13,7 +13,7 @@ EMULATOR=/opt/oberon/oberon-risc-emu/risc
 OXFSTOOL=/usr/bin/oxfstool
 BASEIMAGE=/opt/oberon/io/images/io.img
 OBERONBLDSRC=/opt/oberon/io/root/src/github.com/io-core/Build/
-OBERONHALSRC=/opt/oberon/io/root/src/github.com/io-core/Bootloaders/
+OBERONHALSRC=/opt/oberon/io/root/src/github.com/io-core/Boot/
 
 tools="available"
 
@@ -44,10 +44,14 @@ if [ "$tools" == "available" ] ; then
 
         rm ./build/x[987].txt
 	cp ./Startup.Job ./build/
+	cp ./Build.Tool  ./build/
+	cp ./Port.Tool   ./build/
+	cp ./System.Tool ./build/
 
 	cp ${OBERONHALSRC}HAL.*.Mod ./build/
 
 	cp ${OBERONBLDSRC}ORP.Mod ./build/
+	cp ${OBERONBLDSRC}OXP.Mod ./build/
 	cp ${OBERONBLDSRC}ORG.Mod ./build/
 	cp ${OBERONBLDSRC}OXG.Mod ./build/
 	cp ${OBERONBLDSRC}ORB.Mod ./build/

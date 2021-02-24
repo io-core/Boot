@@ -1,7 +1,5 @@
 (* begin-package-description
 
-**About**
-
 The Boot package manages:
 
 * Loading the Oberon inner core from boot media
@@ -19,7 +17,8 @@ Each compilation or cross-compilation of Oberon will import only one of the HAL 
 
 The Bootloaders package also contains shell scripts used outside of Oberon to prepare an Oberon UEFI or raw binary image.
 
-**Usage**
+Preparing Boot and Distribution Media
+====================
 
 Generating a new Integrated Oberon image suitable for booting requires the following steps:
 
@@ -45,12 +44,26 @@ Module BootLoad is the firmware for the RISC Oberon platform.
 
 end-module-use-description *)
 
+(* begin-package-development
+
+Porting IO to a new platform in a supported CPU architecture requries:
+
+1. Preparing a new HAL.<arch>.<platform>.Mod file
+#. Adapting existing hardware modules or introducing new ones (e.g. Input and Display)
+#. Recompiling all distribution modules dependent on modules who's interfaces have changed
+#. Preparing the Boot and Distribution Media
+
+
+end-package-development *)
 (* begin-module-develop-description
 
-(NW 20.10.2013 / PR 4.2.2014; boot from SDHC disk or line)
+The HAL needs to get the Inner Core into memory, prepare basic OS bookkeeping structures, and link the modules.
+The HAL also abstracts some hardware features.
 
-    ORP.Compile BootLoad.Mod ~
-    ORF.WriteFile BootLoad.rsc prom.mem ~ 
+BootLoad doesn't have to work that hard. The RISC5 environment is so simple the hardware needs no abstracting.
+
+In addition the classic RISC5 Linker prepares an already linked kernel with structures in place so BootLoad only needs to load
+the kernel, place some integers in memory, and pass some values in registers to the kernel entry point.
 
 end-module-develop-description *)
 MODULE* BootLoad;  (*NW 20.10.2013 / PR 4.2.2014; boot from SDHC disk or line*)

@@ -1,3 +1,7 @@
+(* begin-module-short-description
+provides a Hardware Abstraction Layer for 32-bit arm.
+end-module-short-description *)
+
 (* begin-module-use-description
 Module HAL (.a32) exercises features of the compiler in bringing Oberon up from bare metal on 32-bit ARM.
 

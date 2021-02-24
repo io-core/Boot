@@ -1,3 +1,7 @@
+(* begin-module-short-description
+provides a Hardware Abstraction Layer for RISC5 on QEMU.
+end-module-short-description *)
+
 (* begin-module-use-description
 Module HAL (.rsc) exercises features of the compiler in bringing Oberon up from bare metal on RISC5.
 

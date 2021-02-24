@@ -1,3 +1,7 @@
+(* begin-module-short-description
+provides a Hardware Abstraction Layer for 32-bit riscv.
+end-module-short-description *)
+
 (* begin-module-use-description
 Module HAL (.v32) exercises features of the compiler in bringing Oberon up from bare metal on 32-bit RISCV.
 

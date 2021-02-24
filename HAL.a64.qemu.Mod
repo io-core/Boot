@@ -1,3 +1,7 @@
+(* begin-module-short-description
+provides a Hardware Abstraction Layer for aarch64.
+end-module-short-description *)
+
 (* begin-module-use-description
 Module HAL (.a64) exercises features of the compiler in bringing Oberon up from bare metal on aarch64.
 

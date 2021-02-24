@@ -1,9 +1,9 @@
 # ------------ building the system ----------------
 Batch.Run
 |> OXP.Compile ORS.Mod/s ORB.Mod/s ~
-|> OXP.Compile OXG.Mod/s ORG.Mod/s OXP.Mod/s ~
+|> OXP.Compile OXX.Mod/s OXG.Mod/s OXP.Mod/s ~
 |> OXP.Compile ORLinker.Mod/s ~
-|> System.Free ORP ORG ORB ORS ~
+|> System.Free OXP OXG ORB ORS ~
 ||
 Batch.Run
 |> OXP.Compile Kernel.Mod/s FileDir.Mod/s Files.Mod/s Modules.Mod/s ~
@@ -31,10 +31,10 @@ Batch.Run
 |> OXP.Compile Math.Mod/s PIO.Mod/s Blink.Mod/s ~
 |> Batch.Collect ~
 |> OXP.Compile ORS.Mod/s ORB.Mod/s ~
-|> OXP.Compile OXG.Mod/s ORG.Mod/s OXP.Mod/s ~
+|> OXP.Compile OXX.Mod/s OXG.Mod/s OXP.Mod/s ~
 |> OXP.Compile ORDis.Mod/s OIDis.Mod/s OADis.Mod/s OaDis.Mod/s OvDis.Mod/s ~
 |> OXP.Compile OXDis.Mod/s OXTool.Mod/s ~
-|> System.Free OXP ORG OXG ORB ORS ~
+|> System.Free OXP OXG OXX ORB ORS ~
 || 
 
  

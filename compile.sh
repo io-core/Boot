@@ -50,10 +50,10 @@ if [ "$tools" == "available" ] ; then
 
 	cp ${OBERONHALSRC}HAL.*.Mod ./build/
 
-	cp ${OBERONBLDSRC}ORP.Mod ./build/
 	cp ${OBERONBLDSRC}OXP.Mod ./build/
-	cp ${OBERONBLDSRC}ORG.Mod ./build/
+	cp ${OBERONBLDSRC}OXP.Mod ./build/
 	cp ${OBERONBLDSRC}OXG.Mod ./build/
+	cp ${OBERONBLDSRC}OXX.Mod ./build/
 	cp ${OBERONBLDSRC}ORB.Mod ./build/
 	cp ${OBERONBLDSRC}ORS.Mod ./build/
                        

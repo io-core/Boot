@@ -39,7 +39,7 @@ end-module-short-description *)
 (* begin-module-use-description
 Module BootLoad is the firmware for the RISC Oberon platform.
 
-    ORP.Compile BootLoad.Mod ~
+    OXP.Compile BootLoad.Mod ~
     ORF.WriteFile BootLoad.rsc prom.mem ~                      
 
 end-module-use-description *)

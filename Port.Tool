@@ -2,7 +2,7 @@
 OXP.Compile ORDis.Mod/s OIDis.Mod/s OADis.Mod/s OaDis.Mod/s OvDis.Mod/s ~ 
 OXP.Compile OXDis.Mod/s OXTool.Mod/s ~
 
-System.Free OXP OXG OIP OIG OAP OAG OaP OaG OVP OVG OvP OvG ORB ORS ~
+System.Free OXP OXG OIP OIG OAP OAG OaP OaG OVP OVG OvP OvG OXB ORS ~
 
 OXP.Compile BareMetalR.Mod M.Mod~
 OXTool.DecObj BareMetalR.rsc    OXTool.DecObj M.rsc

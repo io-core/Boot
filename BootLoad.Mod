@@ -1,3 +1,33 @@
+(* begin-documentation-node
+###############
+Porting
+###############
+
+Things you gotta do
+
+Platforms
+=========
+
+Compiler Target
+-------------------
+
+Gotta target the cpu architecture
+
+Boot Loader and HAL
+---------------------
+
+Gotta get it to boot
+
+Device Drivers
+----------------
+
+Gotta drive the hardware from Oberon
+
+
+https://github.com/io-core/Boot/blob/main/BootLoad.Mod
+
+end-documentation-node *)
+
 (* begin-package-description
 
 The Boot package manages:

@@ -1,9 +1,9 @@
 # ------------ building the system ----------------
 Batch.Run
-|> OXP.Compile OXS.Mod/s OXB.Mod/s ~
+|> OXP.Compile OXT.Mod/s OXS.Mod/s OXB.Mod/s ~
 |> OXP.Compile OXX.Mod/s OXG.Mod/s OXP.Mod/s ~
 |> OXP.Compile ORLinker.Mod/s ~
-|> System.Free OXP OXG OXB OXS ~
+|> System.Free OXP OXG OXX OXT OXB OXS ~
 ||
 Batch.Run
 |> OXP.Compile Kernel.Mod/s FileDir.Mod/s Files.Mod/s Modules.Mod/s ~
@@ -34,7 +34,7 @@ Batch.Run
 |> OXP.Compile OXX.Mod/s OXG.Mod/s OXP.Mod/s ~
 |> OXP.Compile ORDis.Mod/s OIDis.Mod/s OADis.Mod/s OaDis.Mod/s OvDis.Mod/s ~
 |> OXP.Compile OXDis.Mod/s OXTool.Mod/s ~
-|> System.Free OXP OXG OXX OXB OXS ~
+|> System.Free OXP OXG OXX OXT OXB OXS ~
 || 
 
  

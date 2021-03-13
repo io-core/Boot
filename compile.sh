@@ -54,6 +54,7 @@ if [ "$tools" == "available" ] ; then
 	cp ${OBERONBLDSRC}OXP.Mod ./build/
 	cp ${OBERONBLDSRC}OXG.Mod ./build/
 	cp ${OBERONBLDSRC}OXX.Mod ./build/
+	cp ${OBERONBLDSRC}OXT.Mod ./build/
 	cp ${OBERONBLDSRC}OXB.Mod ./build/
 	cp ${OBERONBLDSRC}OXS.Mod ./build/
                        

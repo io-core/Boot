@@ -24,6 +24,7 @@ MODULE* HAL;
   IMPORT SYSTEM;
 
   CONST
+    MT     = 12; 
     rsData = -56; 
     rsCtrl = -52;
 

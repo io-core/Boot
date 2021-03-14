@@ -37,15 +37,24 @@ fi
 
 if [ "$tools" == "available" ] ; then
 
-  if [ ! -f bin/Core.i64 ] ; then
-	echo "need bin/Core.i64 to build BOOTX64.EFI. Skipping."
+  if [ ! -f bin/Core.i64.qemu ] ; then
+	echo "need bin/Core.i64.qemu to build BOOTX64.EFI. Skipping."
   else
 	echo "Building BOOTX64.EFI"
 	nasm -f bin i64/boot-i64.S -o bin/BOOTX64.EFI
 	dd if=bin/Core.i64.qemu of=bin/BOOTX64.EFI bs=1 seek=20480 conv=notrunc
   fi
 
-  if [ ! -f bin/Core.a64 ] ; then
+  if [ ! -f bin/Core.i64.lin ] ; then
+	echo "need bin/Core.i64.lin to build io-core-i64-linux Skipping."
+  else
+	echo "Building io-core-i64-linux"
+	echo "#!/usr/bin/env oberon" > bin/io-core-i64-linux
+	echo  >> bin/io-core-i64-linux
+	cat bin/Core.i64.lin> bin/io-core-i64-linux
+  fi
+
+  if [ ! -f bin/Core.a64.qemu ] ; then
 	echo "need bin/Core.a64 to build BOOTAA64.EFI. Skipping."
   else
 	echo "Building BOOTAA64.EFI"
@@ -55,7 +64,7 @@ if [ "$tools" == "available" ] ; then
 	#rm boot-a64.o
   fi
 
-  if [ ! -f bin/Core.a32 ] ; then
+  if [ ! -f bin/Core.a32.qemu ] ; then
 	echo "need bin/Core.a32 to build BOOTAA32.BIN. Skipping."
   else
 	echo "Building BOOTAA32.BIN"
@@ -66,7 +75,7 @@ if [ "$tools" == "available" ] ; then
 	#rm boot-a32.o boot-a32.elf
   fi
 
-  if [ ! -f bin/Core.v64 ] ; then
+  if [ ! -f bin/Core.v64.qemu ] ; then
 	echo "need bin/Core.v64 to build BOOTRV64.EFI. Skipping."
   else
 	echo "Building BOOTRV64.EFI"
@@ -76,7 +85,7 @@ if [ "$tools" == "available" ] ; then
 	rm boot-v64.o
   fi
 
-  if [ ! -f bin/Core.v32 ] ; then
+  if [ ! -f bin/Core.v32.qemu ] ; then
 	echo "need bin/Core.v32 to build BOOTRV32.BIN. Skipping."
   else
 	echo "Building BOOTRV32.BIN"

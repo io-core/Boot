@@ -13,6 +13,9 @@ Batch.Run
 |> OXP.Compile HAL.i64.qemu.Mod/s/I M.Mod/s/I~
 |> System.CopyFiles HAL.i64 => Core.i64.qemu ~
 |> Batch.Collect ~
+|> OXP.Compile HAL.i64.lin.Mod/s/I ~
+|> System.CopyFiles HAL.i64 => Core.i64.lin ~
+|> Batch.Collect ~
 |> OXP.Compile HAL.a64.qemu.Mod/s/A M.Mod/s/A~
 |> System.CopyFiles HAL.a64 => Core.a64.qemu ~
 |> Batch.Collect ~

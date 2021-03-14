@@ -51,7 +51,7 @@ if [ "$tools" == "available" ] ; then
 	echo "Building io-core-i64-linux"
 	echo "#!/usr/bin/env oberon" > bin/io-core-i64-linux
 	echo  >> bin/io-core-i64-linux
-	cat bin/Core.i64.lin> bin/io-core-i64-linux
+	cat bin/Core.i64.lin >> bin/io-core-i64-linux
 	chmod +x bin/io-core-i64-linux
   fi
 

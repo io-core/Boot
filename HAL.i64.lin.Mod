@@ -15,7 +15,7 @@ The HAL prepares the Oberon runtime and so cannot rely on it.
 
 The first thing HAL must do is set up its own stack.
 
-Each platform should have its own HAL. This is the HAL for x86_64 on QEMU.
+Each platform should have its own HAL. This is the HAL for x86_64 in Linux userspace.
 
 The HAL remains resident and may be used by other modules.
 
@@ -34,9 +34,9 @@ MODULE* HAL;
 
   (* begin-procedure-description
 ---
-**Init** simply returns.
+**Emit** outputs a character.
   end-procedure-description *)
-PROCEDURE Init( i: INTEGER);
+PROCEDURE Emit( i: INTEGER);
   VAR x, y, z: INTEGER;
 BEGIN
   SYSTEM.PUT(rsData,i)
@@ -50,13 +50,28 @@ BEGIN
      z := z+1
   UNTIL FALSE
 *)
+END Emit;
+
+
+
+  (* begin-procedure-description
+---
+**Init** obtains startup configuration from the boot shim via registers.
+  end-procedure-description *)
+PROCEDURE Init;
+  VAR MTOrg, Foo: INTEGER;
+BEGIN
+  MTOrg := SYSTEM.REG(MT);
+  Foo := SYSTEM.REG(0)
 END Init;
+
 
 
   (* begin-procedure-description
 ---
 **The initialzation code for this module** calls Init and then goes into an infinite loop.
   end-procedure-description *)
-BEGIN Init(ORD("O")); Init(ORD("b")); Init(ORD("e")); Init(ORD("r")); Init(ORD("o")); Init(ORD("n")); 
+BEGIN Init;
+  (* Emit(ORD("O")); Emit(ORD("b")); Emit(ORD("e")); Emit(ORD("r")); Emit(ORD("o")); Emit(ORD("n")); *)
   WHILE TRUE DO END
 END HAL.

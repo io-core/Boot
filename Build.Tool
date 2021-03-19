@@ -15,7 +15,7 @@ Batch.Run
 |> OXP.Compile Oberon.Mod/s ~
 |> OXP.Compile MenuViewers.Mod/s ~
 |> OXP.Compile TextFrames.Mod/s ~
-|> OXP.Compile System.Mod/s Batch.Mod/s Halt.Mod/s~
+|> OXP.Compile System.Mod/s Stdio.Mod/s Batch.Mod/s Halt.Mod/s~
 |> OXP.Compile Edit.Mod/s Tools.Mod/s ~
 |> Batch.Collect ~
 |> OXP.Compile ConvertPCFFont.Mod/s FontSubsetBuilder.Mod/s ~

@@ -31,3 +31,4 @@ System.Open Startup.Job
 System.Open Build.Tool
 System.Open Port.Tool
 System.Open Debug.Tool
+System.Open BASIC.Tool

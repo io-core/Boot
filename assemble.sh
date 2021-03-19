@@ -31,7 +31,9 @@ if [ ! -f ${RISCVTOOLS}riscv64-unknown-elf-as ] ; then
 	tools="unavailable"
 fi
 
-
+if [ ! `command -v oberon` ] ; then
+	echo "oberon command not found, you might want to install it in your system to enable userspace Oberon"
+fi
 
 
 

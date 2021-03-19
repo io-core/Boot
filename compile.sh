@@ -14,6 +14,8 @@ OXFSTOOL=/usr/bin/oxfstool
 BASEIMAGE=/opt/oberon/io/images/io.img
 OBERONBLDSRC=/opt/oberon/io/root/src/github.com/io-core/Build/
 OBERONHALSRC=/opt/oberon/io/root/src/github.com/io-core/Boot/
+OBERONSYSTEMSRC=/opt/oberon/io/root/src/github.com/io-core/System/
+OBERONBASICSRC=/opt/oberon/io/root/src/github.com/io-core/BASIC/
 
 tools="available"
 
@@ -45,6 +47,7 @@ if [ "$tools" == "available" ] ; then
         rm ./build/x[987].txt
 	cp ./Startup.Job ./build/
 	cp ./Build.Tool  ./build/
+	cp ./BASIC.Tool  ./build/
 	cp ./Port.Tool   ./build/
 	cp ./System.Tool ./build/
 
@@ -68,6 +71,9 @@ if [ "$tools" == "available" ] ; then
 #	cp ${OBERONBLDSRC}OADis.Mod ./build/
 #	cp ${OBERONBLDSRC}OvDis.Mod ./build/
 
+	cp ${OBERONBASICSRC}BXP.Mod ./build/
+	cp ${OBERONSYSTEMSRC}Stdio.Mod ./build/
+	cp ${OBERONBASICSRC}Test.Bas ./build/
 
 	mkdir -p ./result
 	rm -rf ./result/*

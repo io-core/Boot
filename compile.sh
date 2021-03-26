@@ -14,7 +14,9 @@ OXFSTOOL=/usr/bin/oxfstool
 BASEIMAGE=/opt/oberon/io/images/io.img
 OBERONBLDSRC=/opt/oberon/io/root/src/github.com/io-core/Build/
 OBERONHALSRC=/opt/oberon/io/root/src/github.com/io-core/Boot/
+OBERONEDITSRC=/opt/oberon/io/root/src/github.com/io-core/Edit/
 OBERONSYSTEMSRC=/opt/oberon/io/root/src/github.com/io-core/System/
+OBERONOBERONSRC=/opt/oberon/io/root/src/github.com/io-core/Oberon/
 OBERONBASICSRC=/opt/oberon/io/root/src/github.com/io-core/BASIC/
 
 tools="available"
@@ -72,14 +74,18 @@ if [ "$tools" == "available" ] ; then
 #	cp ${OBERONBLDSRC}OvDis.Mod ./build/
 
 	cp ${OBERONBASICSRC}BXP.Mod ./build/
+	cp ${OBERONEDITSRC}MIME.Mod ./build/
+	cp ${OBERONEDITSRC}Texts.Mod ./build/
 	cp ${OBERONSYSTEMSRC}Stdio.Mod ./build/
+	cp ${OBERONSYSTEMSRC}StdioTest.Mod ./build/
+	cp ${OBERONOBERONSRC}TestInt.Mod ./build/
 	cp ${OBERONBASICSRC}Test.Bas ./build/
 
 	mkdir -p ./result
 	rm -rf ./result/*
 	rm ./work.img
 	${OXFSTOOL} -f2o -i build -o ./work.img -s 8M
-	${EMULATOR} --mem 8 --size 1600x900x1 ./work.img
+	${EMULATOR} --mem 8 --size 1600x900x1 --leds ./work.img
 	${OXFSTOOL} -o2f -i ./work.img -o result
 
 	mv result/HAL.rsc bin/Core.rsc

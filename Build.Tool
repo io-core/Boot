@@ -1,6 +1,6 @@
 # ------------ building the system ----------------
 Batch.Run
-|> OXP.Compile OXT.Mod/s OXS.Mod/s OXB.Mod/s ~
+|> OXP.Compile OXS.Mod/s OXB.Mod/s OXT.Mod/s~
 |> OXP.Compile OXX.Mod/s OXG.Mod/s OXP.Mod/s ~
 |> OXP.Compile ORLinker.Mod/s ~
 |> System.Free OXP OXG OXX OXT OXB OXS ~
@@ -16,7 +16,7 @@ Batch.Run
 |> OXP.Compile MenuViewers.Mod/s ~
 |> OXP.Compile TextFrames.Mod/s ~
 |> OXP.Compile System.Mod/s Stdio.Mod/s Batch.Mod/s Halt.Mod/s~
-|> OXP.Compile Edit.Mod/s Tools.Mod/s ~
+|> OXP.Compile MIME.Mod/s Edit.Mod/s Tools.Mod/s ~
 |> Batch.Collect ~
 |> OXP.Compile ConvertPCFFont.Mod/s FontSubsetBuilder.Mod/s ~
 |> OXP.Compile GrowFont.Mod/s OptimizeFont.Mod/s ~
@@ -30,7 +30,7 @@ Batch.Run
 |> OXP.Compile Rectangles.Mod/s Checkers.Mod/s ~
 |> OXP.Compile Math.Mod/s PIO.Mod/s Blink.Mod/s ~
 |> Batch.Collect ~
-|> OXP.Compile OXS.Mod/s OXB.Mod/s ~
+|> OXP.Compile OXS.Mod/s OXB.Mod/s OXT.Mod/s ~
 |> OXP.Compile OXX.Mod/s OXG.Mod/s OXP.Mod/s ~
 |> OXP.Compile ORDis.Mod/s OIDis.Mod/s OADis.Mod/s OaDis.Mod/s OvDis.Mod/s ~
 |> OXP.Compile OXDis.Mod/s OXTool.Mod/s ~

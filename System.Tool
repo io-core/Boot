@@ -21,6 +21,7 @@ System.DeleteFiles ~
 System.ShowModules  System.ShowCommands ^ 
 
 PCLink1.Run  Hilbert.Draw  Sierpinski.Draw  Blink.Run  Stars.Open
+TestInt.On TestInt.Off
 
 Tools.Inspect 0      OXP.Compile TextFrames.Mod ~
 Tools.Sector 1

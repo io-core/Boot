@@ -11,12 +11,12 @@ Batch.Run
 |> ORLinker.Load Modules.bin ~
 |> Batch.Collect ~
 |> OXP.Compile Input.Mod/s Display.Mod/s Viewers.Mod/s ~
-|> OXP.Compile Fonts.Mod/s Texts.Mod/s ~
+|> OXP.Compile Fonts.Mod/s MIME.Mod/s Texts.Mod/s ~
 |> OXP.Compile Oberon.Mod/s ~
 |> OXP.Compile MenuViewers.Mod/s ~
 |> OXP.Compile TextFrames.Mod/s ~
 |> OXP.Compile System.Mod/s Stdio.Mod/s Batch.Mod/s Halt.Mod/s~
-|> OXP.Compile MIME.Mod/s Edit.Mod/s Tools.Mod/s ~
+|> OXP.Compile Edit.Mod/s Tools.Mod/s ~
 |> Batch.Collect ~
 |> OXP.Compile ConvertPCFFont.Mod/s FontSubsetBuilder.Mod/s ~
 |> OXP.Compile GrowFont.Mod/s OptimizeFont.Mod/s ~

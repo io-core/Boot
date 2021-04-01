@@ -20,6 +20,10 @@ Batch.Run
 |> System.CopyFiles HAL.a64 => Core.a64.qemu ~
 |> OXP.Compile HAL.a32.qemu.Mod/s/a M.Mod/s/a~
 |> System.CopyFiles HAL.a32 => Core.a32.qemu ~
+|> OXP.Compile HAL.cm4.qemu.Mod/s/C M.Mod/s/C~
+|> System.CopyFiles HAL.cm4 => Core.cm4.qemu ~
+|> OXP.Compile HAL.cm0.qemu.Mod/s/c M.Mod/s/c~
+|> System.CopyFiles HAL.cm0 => Core.cm0.qemu ~
 |> OXP.Compile HAL.v64.qemu.Mod/s/V M.Mod/s/V~
 |> System.CopyFiles HAL.v64 => Core.v64.qemu ~
 |> OXP.Compile HAL.v32.qemu.Mod/s/v M.Mod/s/v~

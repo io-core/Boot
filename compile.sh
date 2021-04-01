@@ -15,9 +15,14 @@ BASEIMAGE=/opt/oberon/io/images/io.img
 OBERONBLDSRC=/opt/oberon/io/root/src/github.com/io-core/Build/
 OBERONHALSRC=/opt/oberon/io/root/src/github.com/io-core/Boot/
 OBERONEDITSRC=/opt/oberon/io/root/src/github.com/io-core/Edit/
+OBERONTESTSRC=/opt/oberon/io/root/src/github.com/io-core/Test/
+OBERONFILESSRC=/opt/oberon/io/root/src/github.com/io-core/Files/
 OBERONSYSTEMSRC=/opt/oberon/io/root/src/github.com/io-core/System/
+OBERONKERNELSRC=/opt/oberon/io/root/src/github.com/io-core/Kernel/
+OBERONMODULESSRC=/opt/oberon/io/root/src/github.com/io-core/Modules/
 OBERONOBERONSRC=/opt/oberon/io/root/src/github.com/io-core/Oberon/
 OBERONBASICSRC=/opt/oberon/io/root/src/github.com/io-core/BASIC/
+OBERONARGPARSESRC=/opt/oberon/io/root/src/github.com/io-core/ArgParse/
 
 tools="available"
 
@@ -62,31 +67,31 @@ if [ "$tools" == "available" ] ; then
 	cp ${OBERONBLDSRC}OXT.Mod ./build/
 	cp ${OBERONBLDSRC}OXB.Mod ./build/
 	cp ${OBERONBLDSRC}OXS.Mod ./build/
-                       
 	cp ${OBERONBLDSRC}ORLinker.Mod ./build/
-
 	cp ${OBERONBLDSRC}OXTool.Mod ./build/
 	cp ${OBERONBLDSRC}O.Dis.Mod ./build/
-#	cp ${OBERONBLDSRC}ORDis.Mod ./build/
-#	cp ${OBERONBLDSRC}OIDis.Mod ./build/
-#	cp ${OBERONBLDSRC}OaDis.Mod ./build/
-#	cp ${OBERONBLDSRC}OADis.Mod ./build/
-#	cp ${OBERONBLDSRC}OvDis.Mod ./build/
 
-	cp ${OBERONBASICSRC}BXP.Mod ./build/
-	cp ${OBERONEDITSRC}MIME.Mod ./build/
-	cp ${OBERONEDITSRC}Texts.Mod ./build/
-	cp ${OBERONSYSTEMSRC}Stdio.Mod ./build/
-	cp ${OBERONSYSTEMSRC}StdioTest.Mod ./build/
-	cp ${OBERONOBERONSRC}TestInt.Mod ./build/
+
+	cp ${OBERONBASICSRC}*.Mod ./build/
+	cp ${OBERONEDITSRC}*.Mod ./build/
+	cp ${OBERONTESTSRC}*.Mod ./build/
+	cp ${OBERONFILESSRC}*.Mod ./build/
+	cp ${OBERONSYSTEMSRC}*.Mod ./build/
+	cp ${OBERONKERNELSRC}*.Mod ./build/
+	cp ${OBERONMODULESSRC}*.Mod ./build/
+	cp ${OBERONOBERONSRC}*.Mod ./build/
 	cp ${OBERONBASICSRC}Test.Bas ./build/
+	cp ${OBERONARGPARSESRC}*.Mod ./build/
 
 	mkdir -p ./result
 	rm -rf ./result/*
 	rm ./work.img
+	rm ./result.img
 	${OXFSTOOL} -f2o -i build -o ./work.img -s 8M
 	${EMULATOR} --mem 8 --size 1600x900x1 --leds ./work.img
 	${OXFSTOOL} -o2f -i ./work.img -o result
+        mv result/Modules.bin result/_BOOTIMAGE_
+	${OXFSTOOL} -f2o -i build -o ./result.img -s 8M
 
 	mv result/HAL.rsc bin/Core.rsc
 	mv result/Core.* bin/

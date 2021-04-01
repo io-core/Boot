@@ -6,6 +6,10 @@
 
 /home/qemu-2021/build/qemu-system-arm -m 1024 -M virt -name guest=aa32 -kernel bin/Core.a32.qemu -smp 2,sockets=1,threads=1 -uuid 515645b7-ab3a-4e82-ba62-25751e4b523f -m 1G -device bochs-display -display gtk -monitor stdio -drive file=/home/images/gigdisk.img
 
+# cortex-m0+ for pi pico:
+#/home/qemu-2021/build/qemu-system-arm -cpu cortex-m0 -M foo
+#qemu-system-arm -M nuri -kernel output/images/zImage -append "console=ttySAC1,115200" -smp 2 -serial null -serial stdio
+
 /home/qemu-2021/build/qemu-system-riscv64 -name guest=rv64 -machine virt -smp 2 -m 1G -kernel bin/rv64-u-boot.elf -bios none -device virtio-blk-device,drive=hd0 -drive file=/home/images/gigdisk.img,format=raw,id=hd0  -device bochs-display -display gtk -monitor stdio
 
 #/opt/qemu-risc6/riscv64-softmmu/qemu-system-riscv64 -name guest=rv64 -machine virt -smp 2 -m 1G -kernel bin/rv64-u-boot.elf -bios none -device virtio-blk-device,drive=hd0 -drive file=/home/images/gigdisk.img,format=raw,id=hd0  -device bochs-display -display gtk -monitor stdio

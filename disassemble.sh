@@ -60,6 +60,26 @@ if [ "$tools" == "available" ] ; then
     echo
   fi
 
+  if [ "$what" == "cm4-qemu" ] || [ "$what" == "all" ] ; then
+    ${AA32TOOLS}objdump -b binary -D -m cortex-m4 -Mforce-thumb -Mreg-names-raw bin/Core.cm4.qemu
+    echo
+  fi
+
+  if [ "$what" == "cm0-qemu" ] || [ "$what" == "all" ] ; then
+    ${AA32TOOLS}objdump -b binary -D -m cortex-m0 -Mforce-thumb -Mreg-names-raw bin/Core.cm0.qemu
+    echo
+  fi
+
+  if [ "$what" == "cm4-ptime" ] || [ "$what" == "all" ] ; then
+    ${AA32TOOLS}objdump -b binary -D -m cortex-m4 -Mforce-thumb -Mreg-names-raw bin/Core.cm4.ptime
+    echo
+  fi
+
+  if [ "$what" == "cm0-pico" ] || [ "$what" == "all" ] ; then
+    ${AA32TOOLS}objdump -b binary -D -m cortex-m0 -Mforce-thumb -Mreg-names-raw bin/Core.cm0.pico
+    echo
+  fi
+
   if [ "$what" == "v64-qemu" ] || [ "$what" == "all" ] ; then
     ${RISCVTOOLS}riscv64-unknown-elf-objdump -b binary -D -m riscv:rv64 -Mnumeric,no-aliases bin/Core.v64.qemu
     echo

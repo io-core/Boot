@@ -58,44 +58,88 @@ if [ "$tools" == "available" ] ; then
   fi
 
   if [ ! -f bin/Core.a64.qemu ] ; then
-	echo "need bin/Core.a64 to build BOOTAA64.EFI. Skipping."
+	echo "need bin/Core.a64.qemu to build BOOTAA64.EFI. Skipping."
   else
 	echo "Building BOOTAA64.EFI"
-	${AA64TOOLS}aarch64-none-linux-gnu-as a64/boot-a64.S -o boot-a64.o
-	${AA64TOOLS}aarch64-none-linux-gnu-objcopy --dump-section PE=bin/BOOTAA64.EFI boot-a64.o
+	${AA64TOOLS}aarch64-none-linux-gnu-as a64/boot-a64-qemu.S -o boot-a64-qemu.o
+	${AA64TOOLS}aarch64-none-linux-gnu-objcopy --dump-section PE=bin/BOOTAA64.EFI boot-a64-qemu.o
 	dd if=bin/Core.a64.qemu of=bin/BOOTAA64.EFI bs=1 seek=20480 conv=notrunc
-	#rm boot-a64.o
+	#rm boot-a64-qemu.o
   fi
 
   if [ ! -f bin/Core.a32.qemu ] ; then
-	echo "need bin/Core.a32 to build BOOTAA32.BIN. Skipping."
+	echo "need bin/Core.a32.qemu to build BOOTAA32.BIN. Skipping."
   else
 	echo "Building BOOTAA32.BIN"
-	${AA32TOOLS}as -mcpu=cortex-a9  a32/boot-a32.S -o boot-a32.o
-	${AA32TOOLS}ld -T a32/boot-a32.ld boot-a32.o -o boot-a32.elf
-	${AA32TOOLS}objcopy -O binary --only-section=.text boot-a32.elf bin/BOOTAA32.BIN
+	${AA32TOOLS}as -mcpu=cortex-a9  a32/boot-a32-qemu.S -o boot-a32-qemu.o
+	${AA32TOOLS}ld -T a32/boot-a32-qemu.ld boot-a32-qemu.o -o boot-a32-qemu.elf
+	${AA32TOOLS}objcopy -O binary --only-section=.text boot-a32-qemu.elf bin/BOOTAA32.BIN
 	dd if=bin/Core.a32.qemu of=bin/BOOTAA32.BIN bs=1 seek=20480 conv=notrunc
 	#rm boot-a32.o boot-a32.elf
   fi
 
+  if [ ! -f bin/Core.cm4.qemu ] ; then
+	echo "need bin/Core.cm4.qemu to build BOOTCM4.BIN. Skipping."
+  else
+	echo "Building BOOTCM4.BIN"
+	${AA32TOOLS}as -mcpu=cortex-m4  cm4/boot-cm4-qemu.S -o boot-cm4-qemu.o
+	${AA32TOOLS}ld -T cm4/boot-cm4-qemu.ld boot-cm4-qemu.o -o boot-cm4-qemu.elf
+	${AA32TOOLS}objcopy -O binary --only-section=.text boot-cm4-qemu.elf bin/BOOTCM4.BIN
+	dd if=bin/Core.cm4.qemu of=bin/BOOTCM4.BIN bs=1 seek=20480 conv=notrunc
+	#rm boot-cm4-qemu.o boot-cm4-qemu.elf
+  fi
+
+  if [ ! -f bin/Core.cm0.qemu ] ; then
+	echo "need bin/Core.cm0.qemu to build BOOTCM0.BIN. Skipping."
+  else
+	echo "Building BOOTCM0.BIN"
+	${AA32TOOLS}as -mcpu=cortex-m0  cm0/boot-cm0-qemu.S -o boot-cm0-qemu.o
+	${AA32TOOLS}ld -T cm0/boot-cm0.ld boot-cm0-qemu.o -o boot-cm0-qemu.elf
+	${AA32TOOLS}objcopy -O binary --only-section=.text boot-cm0-qemu.elf bin/BOOTCM0.BIN
+	dd if=bin/Core.cm0.qemu of=bin/BOOTCM0.BIN bs=1 seek=20480 conv=notrunc
+	#rm boot-cm0-qemu.o boot-cm0-qemu.elf
+  fi
+  
+  if [ ! -f bin/Core.cm4.ptime ] ; then
+	echo "need bin/Core.cm4.ptime to build BOOTPTIME.BIN. Skipping."
+  else
+	echo "Building BOOTPTIME.BIN"
+	${AA32TOOLS}as -mcpu=cortex-m4  cm4/boot-cm4-ptime.S -o boot-cm4-ptime.o
+	${AA32TOOLS}ld -T cm4/boot-cm4-ptime.ld boot-cm4-ptime.o -o boot-cm4-ptime.elf
+	${AA32TOOLS}objcopy -O binary --only-section=.text boot-cm4-ptime.elf bin/BOOTPTIME.BIN
+	dd if=bin/Core.cm4.ptime of=bin/BOOTPTIME.BIN bs=1 seek=20480 conv=notrunc
+	#rm boot-cm4-ptime.o boot-cm4-ptime.elf
+  fi
+
+  if [ ! -f bin/Core.cm0.pico ] ; then
+	echo "need bin/Core.cm0.pico to build bootpico.uf2. Skipping."
+  else
+	echo "Building bootpico.uf2"
+	${AA32TOOLS}as -mcpu=cortex-m0  cm0/boot-cm0-pico.S -o boot-cm0-pico.o
+	${AA32TOOLS}ld -T cm0/boot-cm0.ld boot-cm0-pico.o -o boot-cm0-pico.elf
+	${AA32TOOLS}objcopy -O binary --only-section=.text boot-cm0-pico.elf bin/bootpico.uf2
+	dd if=bin/Core.cm0.pico of=bin/bootpico.uf2 bs=1 seek=20480 conv=notrunc
+	#rm boot-cm0-pico.o boot-cm0-pico.elf
+  fi
+
   if [ ! -f bin/Core.v64.qemu ] ; then
-	echo "need bin/Core.v64 to build BOOTRV64.EFI. Skipping."
+	echo "need bin/Core.v64.qemu to build BOOTRV64.EFI. Skipping."
   else
 	echo "Building BOOTRV64.EFI"
-	${RISCVTOOLS}riscv64-unknown-elf-as -march=rv64imac v64/boot-v64.S -o boot-v64.o
-	${RISCVTOOLS}riscv64-unknown-elf-objcopy --dump-section PE=bin/BOOTRV64.EFI boot-v64.o
+	${RISCVTOOLS}riscv64-unknown-elf-as -march=rv64imac v64/boot-v64-qemu.S -o boot-v64-qemu.o
+	${RISCVTOOLS}riscv64-unknown-elf-objcopy --dump-section PE=bin/BOOTRV64.EFI boot-v64-qemu.o
 	dd if=bin/Core.v64.qemu of=bin/BOOTRV64.EFI bs=1 seek=20480 conv=notrunc
-	rm boot-v64.o
+	rm boot-v64-qemu.o
   fi
 
   if [ ! -f bin/Core.v32.qemu ] ; then
-	echo "need bin/Core.v32 to build BOOTRV32.BIN. Skipping."
+	echo "need bin/Core.v32.qemu to build BOOTRV32.BIN. Skipping."
   else
 	echo "Building BOOTRV32.BIN"
-	${RISCVTOOLS}riscv64-unknown-elf-as v32/boot-v32.S -o boot-v32.o
-	${RISCVTOOLS}riscv64-unknown-elf-ld boot-v32.o -o boot-v32.elf
-	${RISCVTOOLS}riscv64-unknown-elf-objcopy -O binary --only-section=.text boot-v32.elf bin/BOOTRV32.BIN
+	${RISCVTOOLS}riscv64-unknown-elf-as v32/boot-v32-qemu.S -o boot-v32-qemu.o
+	${RISCVTOOLS}riscv64-unknown-elf-ld boot-v32-qemu.o -o boot-v32-qemu.elf
+	${RISCVTOOLS}riscv64-unknown-elf-objcopy -O binary --only-section=.text boot-v32-qemu.elf bin/BOOTRV32.BIN
 	dd if=bin/Core.v32.qemu of=bin/BOOTRV32.BIN bs=1 seek=20480 conv=notrunc
-	rm boot-v32.o boot-v32.elf
+	rm boot-v32-qemu.o boot-v32-qemu.elf
   fi
 fi

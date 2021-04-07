@@ -94,7 +94,7 @@ if [ "$tools" == "available" ] ; then
   else
 	echo "Building BOOTCM0.BIN"
 	${AA32TOOLS}as -mcpu=cortex-m0  cm0/boot-cm0-qemu.S -o boot-cm0-qemu.o
-	${AA32TOOLS}ld -T cm0/boot-cm0.ld boot-cm0-qemu.o -o boot-cm0-qemu.elf
+	${AA32TOOLS}ld -T cm0/boot-cm0-qemu.ld boot-cm0-qemu.o -o boot-cm0-qemu.elf
 	${AA32TOOLS}objcopy -O binary --only-section=.text boot-cm0-qemu.elf bin/BOOTCM0.BIN
 	dd if=bin/Core.cm0.qemu of=bin/BOOTCM0.BIN bs=1 seek=20480 conv=notrunc
 	#rm boot-cm0-qemu.o boot-cm0-qemu.elf
@@ -116,7 +116,7 @@ if [ "$tools" == "available" ] ; then
   else
 	echo "Building bootpico.uf2"
 	${AA32TOOLS}as -mcpu=cortex-m0  cm0/boot-cm0-pico.S -o boot-cm0-pico.o
-	${AA32TOOLS}ld -T cm0/boot-cm0.ld boot-cm0-pico.o -o boot-cm0-pico.elf
+	${AA32TOOLS}ld -T cm0/boot-cm0-pico.ld boot-cm0-pico.o -o boot-cm0-pico.elf
 	${AA32TOOLS}objcopy -O binary --only-section=.text boot-cm0-pico.elf bin/bootpico.uf2
 	dd if=bin/Core.cm0.pico of=bin/bootpico.uf2 bs=1 seek=20480 conv=notrunc
 	#rm boot-cm0-pico.o boot-cm0-pico.elf

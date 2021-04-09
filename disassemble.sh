@@ -55,6 +55,16 @@ if [ "$tools" == "available" ] ; then
     echo
   fi
 
+  if [ "$what" == "a64-pbpro" ] || [ "$what" == "all" ] ; then
+    ${AA64TOOLS}aarch64-none-linux-gnu-objdump -b binary -D -m aarch64 bin/Core.a64.pbpro
+    echo
+  fi
+
+  if [ "$what" == "a64-pphone" ] || [ "$what" == "all" ] ; then
+    ${AA64TOOLS}aarch64-none-linux-gnu-objdump -b binary -D -m aarch64 bin/Core.a64.pphone
+    echo
+  fi
+
   if [ "$what" == "a32-qemu" ] || [ "$what" == "all" ] ; then
     ${AA32TOOLS}objdump -b binary -D -m cortex-a9 -Mreg-names-raw bin/Core.a32.qemu
     echo

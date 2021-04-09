@@ -67,6 +67,26 @@ if [ "$tools" == "available" ] ; then
 	#rm boot-a64-qemu.o
   fi
 
+  if [ ! -f bin/Core.a64.pbpro ] ; then
+	echo "need bin/Core.a64.pbpro to build BOOTAA64PBP.EFI. Skipping."
+  else
+	echo "Building BOOTAA64PBP.EFI"
+	${AA64TOOLS}aarch64-none-linux-gnu-as a64/boot-a64-pbpro.S -o boot-a64-pbpro.o
+	${AA64TOOLS}aarch64-none-linux-gnu-objcopy --dump-section PE=bin/BOOTAA64PBP.EFI boot-a64-pbpro.o
+	dd if=bin/Core.a64.pbpro of=bin/BOOTAA64PBP.EFI bs=1 seek=20480 conv=notrunc
+	#rm boot-a64-pbpro.o
+  fi
+
+  if [ ! -f bin/Core.a64.pphone ] ; then
+	echo "need bin/Core.a64.pphone to build BOOTAA64PPH.EFI. Skipping."
+  else
+	echo "Building BOOTAA64PPH.EFI"
+	${AA64TOOLS}aarch64-none-linux-gnu-as a64/boot-a64-pphone.S -o boot-a64-pphone.o
+	${AA64TOOLS}aarch64-none-linux-gnu-objcopy --dump-section PE=bin/BOOTAA64PPH.EFI boot-a64-pphone.o
+	dd if=bin/Core.a64.pphone of=bin/BOOTAA64PPH.EFI bs=1 seek=20480 conv=notrunc
+	#rm boot-a64-pphone.o
+  fi
+
   if [ ! -f bin/Core.a32.qemu ] ; then
 	echo "need bin/Core.a32.qemu to build BOOTAA32.BIN. Skipping."
   else

@@ -7,7 +7,10 @@ Batch.Run
 |> System.Free GXP BXP OXP OXG OXX OXT OXB OXS ~
 |> Batch.Collect ~
 |> BXP.Compile Test.Bas/s ~
-|> System.Free BXP OXP OXG OXX OXT OXB OXS ~
+|> System.Free BXP OXG OXX OXT OXB OXS ~
+|> Batch.Collect ~
+|> GXP.Compile GXP.go/s ~
+|> System.Free GXP OXG OXX OXT OXB OXS ~
 |> Batch.Collect ~
 |> OXP.Compile ORDis.Mod/s OIDis.Mod/s OADis.Mod/s OaDis.Mod/s OvDis.Mod/s ~ 
 |> OXP.Compile OXDis.Mod/s OXTool.Mod/s TestInt.Mod/s~

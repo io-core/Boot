@@ -85,6 +85,7 @@ if [ "$tools" == "available" ] ; then
 	cp ${OBERONMODULESSRC}*.Mod ./build/
 	cp ${OBERONOBERONSRC}*.Mod ./build/
 	cp ${OBERONBASICSRC}Test.Bas ./build/
+	cp ${OBERONGOSRC}GXP.go ./build/
 	cp ${OBERONARGPARSESRC}*.Mod ./build/
 
 	mkdir -p ./result

@@ -22,6 +22,7 @@ OBERONKERNELSRC=/opt/oberon/io/root/src/github.com/io-core/Kernel/
 OBERONMODULESSRC=/opt/oberon/io/root/src/github.com/io-core/Modules/
 OBERONOBERONSRC=/opt/oberon/io/root/src/github.com/io-core/Oberon/
 OBERONBASICSRC=/opt/oberon/io/root/src/github.com/io-core/BASIC/
+OBERONGOSRC=/opt/oberon/io/root/src/github.com/io-core/Go/
 OBERONARGPARSESRC=/opt/oberon/io/root/src/github.com/io-core/ArgParse/
 
 tools="available"
@@ -58,6 +59,8 @@ if [ "$tools" == "available" ] ; then
 	cp ./Port.Tool   ./build/
 	cp ./System.Tool ./build/
 
+	cp /home/cperkins/Sync/Writing/Hosted1.hybrid ./build/Hosted.txt
+
 	cp ${OBERONHALSRC}HAL.*.Mod ./build/
 
 	cp ${OBERONBLDSRC}OXP.Mod ./build/
@@ -73,6 +76,7 @@ if [ "$tools" == "available" ] ; then
 
 
 	cp ${OBERONBASICSRC}*.Mod ./build/
+	cp ${OBERONGOSRC}*.Mod ./build/
 	cp ${OBERONEDITSRC}*.Mod ./build/
 	cp ${OBERONTESTSRC}*.Mod ./build/
 	cp ${OBERONFILESSRC}*.Mod ./build/

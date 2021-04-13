@@ -1,9 +1,10 @@
 Batch.Run
 |> System.Watch
 |> OXP.Compile OXS.Mod/s OXB.Mod/s OXT.Mod/s ~
-|> OXP.Compile OXX.Mod/s OXG.Mod/s OXP.Mod/s BXP.Mod/s ~
+|> OXP.Compile OXX.Mod/s OXG.Mod/s OXP.Mod/s ~
+|> OXP.Compile BXP.Mod/s GXP.Mod/s~
 |> OXP.Compile Stdio.Mod/s StdioTest.Mod/s~
-|> System.Free BXP OXP OXG OXX OXT OXB OXS ~
+|> System.Free GXP BXP OXP OXG OXX OXT OXB OXS ~
 |> Batch.Collect ~
 |> BXP.Compile Test.Bas/s ~
 |> System.Free BXP OXP OXG OXX OXT OXB OXS ~

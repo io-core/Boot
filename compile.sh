@@ -23,6 +23,7 @@ OBERONMODULESSRC=/opt/oberon/io/root/src/github.com/io-core/Modules/
 OBERONOBERONSRC=/opt/oberon/io/root/src/github.com/io-core/Oberon/
 OBERONBASICSRC=/opt/oberon/io/root/src/github.com/io-core/BASIC/
 OBERONGOSRC=/opt/oberon/io/root/src/github.com/io-core/Go/
+OBERONCSRC=/opt/oberon/io/root/src/github.com/io-core/C/
 OBERONARGPARSESRC=/opt/oberon/io/root/src/github.com/io-core/ArgParse/
 
 tools="available"
@@ -77,6 +78,7 @@ if [ "$tools" == "available" ] ; then
 
 	cp ${OBERONBASICSRC}*.Mod ./build/
 	cp ${OBERONGOSRC}*.Mod ./build/
+	cp ${OBERONCSRC}*.Mod ./build/
 	cp ${OBERONEDITSRC}*.Mod ./build/
 	cp ${OBERONTESTSRC}*.Mod ./build/
 	cp ${OBERONFILESSRC}*.Mod ./build/
@@ -86,6 +88,7 @@ if [ "$tools" == "available" ] ; then
 	cp ${OBERONOBERONSRC}*.Mod ./build/
 	cp ${OBERONBASICSRC}Test.Bas ./build/
 	cp ${OBERONGOSRC}GXP.go ./build/
+	cp ${OBERONCSRC}CXP.c ./build/
 	cp ${OBERONARGPARSESRC}*.Mod ./build/
 
 	mkdir -p ./result

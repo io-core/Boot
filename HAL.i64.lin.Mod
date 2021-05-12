@@ -24,15 +24,16 @@ MODULE* HAL;
   IMPORT SYSTEM;
 
   CONST
+(*
     MT     = 12; 
     rsData = -56; 
     rsCtrl = -52;
-
+*)
   TYPE
 
   VAR
 
-
+(*
   (* begin-procedure-description
 ---
 **Emit** outputs a character.
@@ -66,13 +67,16 @@ BEGIN
   Foo := SYSTEM.REG(0)
 END Init;
 
-
+*)
 
   (* begin-procedure-description
 ---
 **The initialzation code for this module** calls Init and then goes into an infinite loop.
   end-procedure-description *)
-BEGIN Init;
+BEGIN 
+(*
+  Init;
   (* Emit(ORD("O")); Emit(ORD("b")); Emit(ORD("e")); Emit(ORD("r")); Emit(ORD("o")); Emit(ORD("n")); *)
   WHILE TRUE DO END
+*)
 END HAL.

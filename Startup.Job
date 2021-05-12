@@ -43,6 +43,8 @@ Batch.Run
 |> System.CopyFiles HAL.v64 => Core.v64.qemu ~
 |> OXP.Compile HAL.v32.qemu.Mod/s/v M.Mod/s/v~
 |> System.CopyFiles HAL.v32 => Core.v32.qemu ~
+|> OXP.Compile HAL.w64.wasmer.Mod/s/W M.Mod/s/W~
+|> System.CopyFiles HAL.w64 => Core.w64.wasmer ~
 |> Batch.Collect ~
 |> System.Watch
 |> ~ 

@@ -8,6 +8,7 @@ NASMTOOLS=/usr/bin/
 AA64TOOLS=/home/arm/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin/
 AA32TOOLS=/home/arm/gcc-arm-none-eabi-9-2019-q4-major/arm-none-eabi/bin/
 RISCVTOOLS=/home/riscv/bin/
+WABTTOOLS=/opt/wabt/build/
 
 tools="available"
 
@@ -31,6 +32,11 @@ if [ ! -f ${RISCVTOOLS}riscv64-unknown-elf-as ] ; then
 	tools="unavailable"
 fi
 
+if [ ! -f ${WABTTOOLS}wasm2wat ] ; then
+	echo "web assembly is required and WABTTOOLS must be set correctly"
+	tools="unavailable"
+fi
+
 if [ ! `command -v oberon` ] ; then
 	echo "oberon command not found, you might want to install it in your system to enable userspace Oberon"
 fi
@@ -50,11 +56,15 @@ if [ "$tools" == "available" ] ; then
   if [ ! -f bin/Core.i64.lin ] ; then
 	echo "need bin/Core.i64.lin to build io-core-i64-linux Skipping."
   else
-	echo "Building io-core-i64-linux"
-	echo "#!/usr/bin/env oberon" > bin/io-core-i64-linux
-	echo  >> bin/io-core-i64-linux
-	cat bin/Core.i64.lin >> bin/io-core-i64-linux
-	chmod +x bin/io-core-i64-linux
+	echo "Building boot-i64-lin.elf"
+#	objcopy -I binary -O elf64-little --change-section-address .data=0x00 bin/Core.i64.lin bin/boot-i64-lin.elf
+	objcopy --input binary --output elf64-x86-64 --binary-architecture i386:x86-64  bin/Core.i64.lin boot-i64-lin.o
+	ld   -nostdlib -T i64/boot-i64-lin.ld  boot-i64-lin.o -o boot-i64-lin.elf
+#	echo "Building io-core-i64-linux"
+#	echo "#!/usr/bin/env oberon" > bin/io-core-i64-linux
+#	echo  >> bin/io-core-i64-linux
+#	cat bin/Core.i64.lin >> bin/io-core-i64-linux
+#	chmod +x bin/io-core-i64-linux
   fi
 
   if [ ! -f bin/Core.a64.qemu ] ; then
@@ -161,5 +171,16 @@ if [ "$tools" == "available" ] ; then
 	${RISCVTOOLS}riscv64-unknown-elf-objcopy -O binary --only-section=.text boot-v32-qemu.elf bin/BOOTRV32.BIN
 	dd if=bin/Core.v32.qemu of=bin/BOOTRV32.BIN bs=1 seek=20480 conv=notrunc
 	rm boot-v32-qemu.o boot-v32-qemu.elf
+  fi
+
+  if [ ! -f bin/Core.w64.wasmer ] ; then
+	echo "need bin/Core.w64.wasmer to build boot-w64-wasmer.wasm. Skipping."
+  else
+	echo "Building boot-w64-wasmer.wasm"
+	${WABTTOOLS}wasm2wat w64/boot-w64-wasmer.wat -o bin/boot-w64-wasmer.wasm
+#	${RISCVTOOLS}riscv64-unknown-elf-ld boot-v32-qemu.o -o boot-v32-qemu.elf
+#	${RISCVTOOLS}riscv64-unknown-elf-objcopy -O binary --only-section=.text boot-v32-qemu.elf bin/BOOTRV32.BIN
+#	dd if=bin/Core.v32.qemu of=bin/BOOTRV32.BIN bs=1 seek=20480 conv=notrunc
+#	rm boot-v32-qemu.o boot-v32-qemu.elf
   fi
 fi

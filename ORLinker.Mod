@@ -242,6 +242,7 @@ MODULE ORLinker;  (*Link and create binary on RISC; NW 20.10.2013 CP 21.05.2014 
         Files.ReadInt(R, n);
         WHILE n > 0 DO Files.ReadInt(R, w); SYSTEM.PUT(p, w); INC(p, 4); DEC(n) END ;  (*program code*)
         mod.imp := p;  (*copy imports*)
+OUCH(65);OUCH(65);OUCH(65);OUCH(65);
         i := 0;
         WHILE i < nofimps DO
           SYSTEM.PUT(p, import[i]); INC(p, 4); INC(i)                                                                   
@@ -251,7 +252,9 @@ MODULE ORLinker;  (*Link and create binary on RISC; NW 20.10.2013 CP 21.05.2014 
         WHILE ch # 0X DO
           REPEAT SYSTEM.PUT(p, ch); INC(p); Files.Read(R, ch) UNTIL ch = 0X;
           REPEAT SYSTEM.PUT(p, 0X); INC(p) UNTIL p MOD 4 = 0;
-          Files.ReadInt(R, n); SYSTEM.PUT(p, n); INC(p, 4); Files.Read(R, ch)
+          Files.ReadInt(R, n); SYSTEM.PUT(p, n); INC(p, 4); 
+(*          Files.ReadInt(R, n); SYSTEM.PUT(p, n); INC(p, 4);  *)
+          Files.Read(R, ch)
         END ;
         REPEAT SYSTEM.PUT(p, 0X); INC(p) UNTIL p MOD 4 = 0;
         mod.ent := p; (*entries*)
@@ -417,10 +420,10 @@ MODULE ORLinker;  (*Link and create binary on RISC; NW 20.10.2013 CP 21.05.2014 
     Texts.Scan(S);
     IF S.class = Texts.Name THEN
         NEW(T); Texts.Open(T, S.s);
-        Texts.WriteString(W, S.s); 
+        Texts.WriteString(W, S.s); Texts.Append(Oberon.Log, W.buf);
         F:= ThisFile( S.s );
         IF F # NIL THEN (* LinkOne this module *)
-          Texts.WriteLn(W);  Texts.WriteString(W, " binary buffer at: ");  Texts.WriteHex(W, binStart);   Texts.WriteLn(W);
+          Texts.WriteLn(W);  Texts.WriteString(W, " binary buffer at: ");  Texts.WriteHex(W, binStart);   Texts.WriteLn(W);  Texts.Append(Oberon.Log, W.buf);
           zero(Lname);
           i:=0; WHILE (S.s[i] #0X ) & (i < LEN(Lname)) &( i < LEN(S.s)) DO Lname[i]:=S.s[i] ; INC(i) END;
           LinkOne( Lname , M );
@@ -433,7 +436,7 @@ MODULE ORLinker;  (*Link and create binary on RISC; NW 20.10.2013 CP 21.05.2014 
           WHILE p # NIL DO  (* fix up module chain of pointers*)
             Texts.WriteString(W, p.name);   Texts.WriteString(W, " at "); Texts.WriteHex(W, p.data );
             Texts.WriteString(W, " (");   Texts.WriteHex(W, p.data - binStart ); Texts.WriteString(W, ") " );
-            Texts.WriteHex(W, p.num );  Texts.WriteLn(W);
+            Texts.WriteHex(W, p.num );  Texts.WriteLn(W); Texts.Append(Oberon.Log, W.buf);
             M:=p;
             p:=p.next;
             IF M.next # NIL THEN M.next := SYSTEM.VAL(Modules.Module, SYSTEM.VAL(INTEGER, M.next) - binStart) END;
@@ -456,9 +459,9 @@ MODULE ORLinker;  (*Link and create binary on RISC; NW 20.10.2013 CP 21.05.2014 
           SYSTEM.PUT(binStart, 0E7H * 1000000H + (v DIV 4) -1);      (* Branch to Module start routine *)
           WHILE i < binAllocPtr DO SYSTEM.GET( i, v); Files.WriteInt(R,v); INC(i,4) END;
           Files.Register(F);
-          Texts.WriteString(W, "Binary Written");  Texts.WriteLn(W);
+          Texts.WriteString(W, "Binary Written");  Texts.WriteLn(W); Texts.Append(Oberon.Log, W.buf);
 
-        ELSE Texts.WriteString(W, " (not found)")
+        ELSE Texts.WriteString(W, " (not found)"); Texts.Append(Oberon.Log, W.buf);
         END 
    END;
    Texts.WriteLn(W); Texts.Append(Oberon.Log, W.buf) 

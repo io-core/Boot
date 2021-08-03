@@ -15,37 +15,39 @@ Batch.Run
 |> CXP.Compile CXP.c/s ~
 |> System.Free CXP OXG OXX OXT OXB OXS ~
 |> Batch.Collect ~
-|> OXP.Compile ORDis.Mod/s OIDis.Mod/s OADis.Mod/s OaDis.Mod/s OvDis.Mod/s ~ 
+|> OXP.Compile ORDis.Mod/s OIDis.Mod/s OADis.Mod/s OaDis.Mod/s OvDis.Mod/s ~
 |> OXP.Compile OXDis.Mod/s OXTool.Mod/s TestInt.Mod/s~
+|> OXP.Compile BootLoad.Mod/s~
+|> OXP.Compile BootLoad.Mod/s/R~
 |> OXP.Compile HAL.rsc.qemu.Mod/s M.Mod/s~
 |> System.CopyFiles HAL.rsc => Core.rsc.qemu ~
-|> OXP.Compile HAL.i64.qemu.Mod/s/I M.Mod/s/I~
-|> System.CopyFiles HAL.i64 => Core.i64.qemu ~
-|> OXP.Compile HAL.i64.lin.Mod/s/I ~
-|> System.CopyFiles HAL.i64 => Core.i64.lin ~
-|> OXP.Compile HAL.a64.qemu.Mod/s/A M.Mod/s/A~
-|> System.CopyFiles HAL.a64 => Core.a64.qemu ~
-|> OXP.Compile HAL.a64.pbpro.Mod/s/A M.Mod/s/A~
-|> System.CopyFiles HAL.a64 => Core.a64.pbpro ~
-|> OXP.Compile HAL.a64.pphone.Mod/s/A M.Mod/s/A~
-|> System.CopyFiles HAL.a64 => Core.a64.pphone ~
-|> OXP.Compile HAL.a32.qemu.Mod/s/a M.Mod/s/a~
-|> System.CopyFiles HAL.a32 => Core.a32.qemu ~
-|> OXP.Compile HAL.cm4.qemu.Mod/s/C M.Mod/s/C~
-|> System.CopyFiles HAL.cm4 => Core.cm4.qemu ~
-|> OXP.Compile HAL.cm0.qemu.Mod/s/c M.Mod/s/c~
-|> System.CopyFiles HAL.cm0 => Core.cm0.qemu ~
-|> OXP.Compile HAL.cm4.ptime.Mod/s/C M.Mod/s/C~
-|> System.CopyFiles HAL.cm4 => Core.cm4.ptime ~
-|> OXP.Compile HAL.cm0.pico.Mod/s/c M.Mod/s/c~
-|> System.CopyFiles HAL.cm0 => Core.cm0.pico ~
-|> OXP.Compile HAL.v64.qemu.Mod/s/V M.Mod/s/V~
-|> System.CopyFiles HAL.v64 => Core.v64.qemu ~
-|> OXP.Compile HAL.v32.qemu.Mod/s/v M.Mod/s/v~
-|> System.CopyFiles HAL.v32 => Core.v32.qemu ~
-|> OXP.Compile HAL.w64.wasmer.Mod/s/W M.Mod/s/W~
-|> System.CopyFiles HAL.w64 => Core.w64.wasmer ~
+|> OXP.Compile HAL.x8664.qemu.Mod/s/I M.Mod/s/I~
+|> System.CopyFiles HAL.i8x => Core.x8664.qemu ~
+|> OXP.Compile HAL.x8664.lin.Mod/s/I ~
+|> System.CopyFiles HAL.i8x => Core.x8664.lin ~
+|> OXP.Compile HAL.arm64.qemu.Mod/s/A M.Mod/s/A~
+|> System.CopyFiles HAL.a8x => Core.arm64.qemu ~
+|> OXP.Compile HAL.arm64.pbpro.Mod/s/A M.Mod/s/A~
+|> System.CopyFiles HAL.a8x => Core.arm64.pbpro ~
+|> OXP.Compile HAL.arm64.pphone.Mod/s/A M.Mod/s/A~
+|> System.CopyFiles HAL.a8x => Core.arm64.pphone ~
+|> OXP.Compile HAL.arm32.qemu.Mod/s/a M.Mod/s/a~
+|> System.CopyFiles HAL.a4x => Core.arm32.qemu ~
+|> OXP.Compile HAL.cortex4.qemu.Mod/s/C M.Mod/s/C~
+|> System.CopyFiles HAL.c4x => Core.cortex4.qemu ~
+|> OXP.Compile HAL.cortex0.qemu.Mod/s/c M.Mod/s/c~
+|> System.CopyFiles HAL.c0x => Core.cortex0.qemu ~
+|> OXP.Compile HAL.cortex4.ptime.Mod/s/C M.Mod/s/C~
+|> System.CopyFiles HAL.c4x => Core.cortex4.ptime ~
+|> OXP.Compile HAL.cortex0.pico.Mod/s/c M.Mod/s/c~
+|> System.CopyFiles HAL.c0x => Core.cortex0.pico ~
+|> OXP.Compile HAL.riscv64.qemu.Mod/s/V M.Mod/s/V~
+|> System.CopyFiles HAL.v8x => Core.riscv64.qemu ~
+|> OXP.Compile HAL.riscv32.qemu.Mod/s/v M.Mod/s/v~
+|> System.CopyFiles HAL.v4x => Core.riscv32.qemu ~
+|> OXP.Compile HAL.wasm.wasmer.Mod/s/W M.Mod/s/W~
+|> System.CopyFiles HAL.w4x => Core.wasm.wasmer ~
 |> Batch.Collect ~
 |> System.Watch
-|> ~ 
+|> ~
 ||

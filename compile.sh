@@ -14,6 +14,7 @@ OXFSTOOL=/usr/bin/oxfstool
 BASEIMAGE=/opt/oberon/io/images/io.img
 OBERONBLDSRC=/opt/oberon/io/root/src/github.com/io-core/Build/
 OBERONHALSRC=/opt/oberon/io/root/src/github.com/io-core/Boot/
+OBERONDRAWSRC=/opt/oberon/io/root/src/github.com/io-core/Draw/
 OBERONEDITSRC=/opt/oberon/io/root/src/github.com/io-core/Edit/
 OBERONTESTSRC=/opt/oberon/io/root/src/github.com/io-core/Test/
 OBERONFILESSRC=/opt/oberon/io/root/src/github.com/io-core/Files/
@@ -71,15 +72,23 @@ if [ "$tools" == "available" ] ; then
 	cp ${OBERONBLDSRC}OXT.Mod ./build/
 	cp ${OBERONBLDSRC}OXB.Mod ./build/
 	cp ${OBERONBLDSRC}OXS.Mod ./build/
-	cp ${OBERONBLDSRC}ORLinker.Mod ./build/
+	cp ${OBERONBLDSRC}ORDis.Mod ./build/
+	cp ${OBERONBLDSRC}OIDis.Mod ./build/
+	cp ${OBERONBLDSRC}OADis.Mod ./build/
+	cp ${OBERONBLDSRC}OaDis.Mod ./build/
+	cp ${OBERONBLDSRC}OvDis.Mod ./build/
+	cp ${OBERONBLDSRC}OXDis.Mod ./build/
+
+	cp ${OBERONBLDSRC}OXLinker.Mod ./build/
 	cp ${OBERONBLDSRC}OXTool.Mod ./build/
-	cp ${OBERONBLDSRC}O.Dis.Mod ./build/
+#	cp ${OBERONBLDSRC}O.Dis.Mod ./build/
 
 
 	cp ${OBERONBASICSRC}*.Mod ./build/
 	cp ${OBERONGOSRC}*.Mod ./build/
 	cp ${OBERONCSRC}*.Mod ./build/
 	cp ${OBERONEDITSRC}*.Mod ./build/
+	cp ${OBERONDRAWSRC}*.Mod ./build/
 	cp ${OBERONTESTSRC}*.Mod ./build/
 	cp ${OBERONFILESSRC}*.Mod ./build/
 	cp ${OBERONSYSTEMSRC}*.Mod ./build/
@@ -95,11 +104,11 @@ if [ "$tools" == "available" ] ; then
 	rm -rf ./result/*
 	rm ./work.img
 	rm ./result.img
-	${OXFSTOOL} -f2o -i build -o ./work.img -s 8M
-	${EMULATOR} --mem 8 --size 1600x900x1 --leds ./work.img
-	${OXFSTOOL} -o2f -i ./work.img -o result
+	${OXFSTOOL} -f2o -i build -o ./work.img -s 8M  > /dev/null
+	${EMULATOR} --mem 10 --size 1800x1000x1 --leds --ouch ./work.img
+	${OXFSTOOL} -o2f -i ./work.img -o result  > /dev/null
         mv result/Modules.bin result/_BOOTIMAGE_
-	${OXFSTOOL} -f2o -i build -o ./result.img -s 8M
+	${OXFSTOOL} -f2o -i build -o ./result.img -s 8M > /dev/null
 
 	mv result/HAL.rsc bin/Core.rsc
 	mv result/Core.* bin/

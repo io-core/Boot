@@ -40,63 +40,63 @@ if [ "$tools" == "available" ] ; then
     echo
   fi
 
-  if [ "$what" == "i64-qemu" ] || [ "$what" == "all" ] ; then
-    objdump -b binary -D -M intel -m i386:x86-64 bin/Core.i64.qemu
+  if [ "$what" == "x8664-qemu" ] || [ "$what" == "all" ] ; then
+    objdump -b binary -D -M intel -m i386:x86-64 bin/Core.x8664.qemu
     echo
   fi
 
-  if [ "$what" == "i64-lin" ] || [ "$what" == "all" ] ; then
-    objdump -b binary -D -M intel -m i386:x86-64 bin/Core.i64.lin
+  if [ "$what" == "x8664-lin" ] || [ "$what" == "all" ] ; then
+    objdump -b binary -D -M intel -m i386:x86-64 bin/Core.x8664.lin
     echo
   fi
 
-  if [ "$what" == "a64-qemu" ] || [ "$what" == "all" ] ; then
-    ${AA64TOOLS}aarch64-none-linux-gnu-objdump -b binary -D -m aarch64 bin/Core.a64.qemu
+  if [ "$what" == "arm64-qemu" ] || [ "$what" == "all" ] ; then
+    ${AA64TOOLS}aarch64-none-linux-gnu-objdump -b binary -D -m aarch64 bin/Core.arm64.qemu
     echo
   fi
 
-  if [ "$what" == "a64-pbpro" ] || [ "$what" == "all" ] ; then
-    ${AA64TOOLS}aarch64-none-linux-gnu-objdump -b binary -D -m aarch64 bin/Core.a64.pbpro
+  if [ "$what" == "arm64-pbpro" ] || [ "$what" == "all" ] ; then
+    ${AA64TOOLS}aarch64-none-linux-gnu-objdump -b binary -D -m aarch64 bin/Core.arm64.pbpro
     echo
   fi
 
-  if [ "$what" == "a64-pphone" ] || [ "$what" == "all" ] ; then
-    ${AA64TOOLS}aarch64-none-linux-gnu-objdump -b binary -D -m aarch64 bin/Core.a64.pphone
+  if [ "$what" == "arm64-pphone" ] || [ "$what" == "all" ] ; then
+    ${AA64TOOLS}aarch64-none-linux-gnu-objdump -b binary -D -m aarch64 bin/Core.arm64.pphone
     echo
   fi
 
-  if [ "$what" == "a32-qemu" ] || [ "$what" == "all" ] ; then
-    ${AA32TOOLS}objdump -b binary -D -m cortex-a9 -Mreg-names-raw bin/Core.a32.qemu
+  if [ "$what" == "arm32-qemu" ] || [ "$what" == "all" ] ; then
+    ${AA32TOOLS}objdump -b binary -D -m cortex-a9 -Mreg-names-raw bin/Core.arm32.qemu
     echo
   fi
 
-  if [ "$what" == "cm4-qemu" ] || [ "$what" == "all" ] ; then
-    ${AA32TOOLS}objdump -b binary -D -m cortex-m4 -Mforce-thumb -Mreg-names-raw bin/Core.cm4.qemu
+  if [ "$what" == "cortex4-qemu" ] || [ "$what" == "all" ] ; then
+    ${AA32TOOLS}objdump -b binary -D -m cortex-m4 -Mforce-thumb -Mreg-names-raw bin/Core.cortex4.qemu
     echo
   fi
 
-  if [ "$what" == "cm0-qemu" ] || [ "$what" == "all" ] ; then
-    ${AA32TOOLS}objdump -b binary -D -m cortex-m0 -Mforce-thumb -Mreg-names-raw bin/Core.cm0.qemu
+  if [ "$what" == "cortex0-qemu" ] || [ "$what" == "all" ] ; then
+    ${AA32TOOLS}objdump -b binary -D -m cortex-m0 -Mforce-thumb -Mreg-names-raw bin/Core.cortex0.qemu
     echo
   fi
 
-  if [ "$what" == "cm4-ptime" ] || [ "$what" == "all" ] ; then
-    ${AA32TOOLS}objdump -b binary -D -m cortex-m4 -Mforce-thumb -Mreg-names-raw bin/Core.cm4.ptime
+  if [ "$what" == "cortex4-ptime" ] || [ "$what" == "all" ] ; then
+    ${AA32TOOLS}objdump -b binary -D -m cortex-m4 -Mforce-thumb -Mreg-names-raw bin/Core.cortex4.ptime
     echo
   fi
 
-  if [ "$what" == "cm0-pico" ] || [ "$what" == "all" ] ; then
-    ${AA32TOOLS}objdump -b binary -D -m cortex-m0 -Mforce-thumb -Mreg-names-raw bin/Core.cm0.pico
+  if [ "$what" == "cortex0-pico" ] || [ "$what" == "all" ] ; then
+    ${AA32TOOLS}objdump -b binary -D -m cortex-m0 -Mforce-thumb -Mreg-names-raw bin/Core.cortex0.pico
     echo
   fi
 
-  if [ "$what" == "v64-qemu" ] || [ "$what" == "all" ] ; then
-    ${RISCVTOOLS}riscv64-unknown-elf-objdump -b binary -D -m riscv:rv64 -Mnumeric,no-aliases bin/Core.v64.qemu
+  if [ "$what" == "riscv64-qemu" ] || [ "$what" == "all" ] ; then
+    ${RISCVTOOLS}riscv64-unknown-elf-objdump -b binary -D -m riscv:rv64 -Mnumeric,no-aliases bin/Core.riscv64.qemu
     echo
   fi
 
-  if [ "$what" == "v32-qemu" ] || [ "$what" == "all" ] ; then
-    ${RISCVTOOLS}riscv64-unknown-elf-objdump -b binary -D -m riscv:rv32 -Mnumeric,no-aliases bin/Core.v32.qemu
+  if [ "$what" == "riscv32-qemu" ] || [ "$what" == "all" ] ; then
+    ${RISCVTOOLS}riscv64-unknown-elf-objdump -b binary -D -m riscv:rv32 -Mnumeric,no-aliases bin/Core.riscv32.qemu
   fi
   
 

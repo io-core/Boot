@@ -3,8 +3,9 @@ Batch.Run
 |> OXP.Compile OXS.Mod/s OXB.Mod/s OXT.Mod/s ~
 |> OXP.Compile OXX.Mod/s OXG.Mod/s OXP.Mod/s ~
 |> OXP.Compile BXP.Mod/s GXP.Mod/s CXP.Mod/s ~
+|> OXP.Compile PXP.Mod/s ~
 |> OXP.Compile Stdio.Mod/s StdioTest.Mod/s~
-|> System.Free GXP BXP OXP OXG OXX OXT OXB OXS ~
+|> System.Free PXP GXP BXP OXP OXG OXX OXT OXB OXS ~
 |> Batch.Collect ~
 |> BXP.Compile Test.Bas/s ~
 |> System.Free BXP OXG OXX OXT OXB OXS ~

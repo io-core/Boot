@@ -23,6 +23,7 @@ OBERONKERNELSRC=/opt/oberon/io/root/src/github.com/io-core/Kernel/
 OBERONMODULESSRC=/opt/oberon/io/root/src/github.com/io-core/Modules/
 OBERONOBERONSRC=/opt/oberon/io/root/src/github.com/io-core/Oberon/
 OBERONBASICSRC=/opt/oberon/io/root/src/github.com/io-core/BASIC/
+OBERONPASCALSRC=/opt/oberon/io/root/src/github.com/io-core/Pascal/
 OBERONGOSRC=/opt/oberon/io/root/src/github.com/io-core/Go/
 OBERONCSRC=/opt/oberon/io/root/src/github.com/io-core/C/
 OBERONARGPARSESRC=/opt/oberon/io/root/src/github.com/io-core/ArgParse/
@@ -84,6 +85,7 @@ if [ "$tools" == "available" ] ; then
 #	cp ${OBERONBLDSRC}O.Dis.Mod ./build/
 
 
+	cp ${OBERONPASCALSRC}*.Mod ./build/
 	cp ${OBERONBASICSRC}*.Mod ./build/
 	cp ${OBERONGOSRC}*.Mod ./build/
 	cp ${OBERONCSRC}*.Mod ./build/

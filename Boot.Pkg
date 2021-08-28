@@ -8,7 +8,7 @@ r,[core]/Build,v5.0.0
 r,[core]/Kernel,v5.0.0
 r,[core]/Files,v5.0.0
 p,BootLoad.Mod,
-p,HAL.rsc.qemu.Mod,
+p,HAL.risc5.qemu.Mod,
 p,HAL.arm32.qemu.Mod,
 p,HAL.arm64.qemu.Mod,
 p,HAL.arm64.pbpro.Mod,

@@ -20,8 +20,8 @@ Batch.Run
 |> OXP.Compile OXDis.Mod/s OXTool.Mod/s TestInt.Mod/s~
 |> OXP.Compile BootLoad.Mod/s~
 |> OXP.Compile BootLoad.Mod/s/R~
-|> OXP.Compile HAL.rsc.qemu.Mod/s M.Mod/s~
-|> System.CopyFiles HAL.rsc => Core.rsc.qemu ~
+|> OXP.Compile HAL.risc5.qemu.Mod/s M.Mod/s~
+|> System.CopyFiles HAL.rsc => Core.risc5.qemu ~
 |> OXP.Compile HAL.x8664.qemu.Mod/s/I M.Mod/s/I~
 |> System.CopyFiles HAL.i8x => Core.x8664.qemu ~
 |> OXP.Compile HAL.x8664.lin.Mod/s/I ~

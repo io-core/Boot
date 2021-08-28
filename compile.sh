@@ -112,7 +112,7 @@ if [ "$tools" == "available" ] ; then
         mv result/Modules.bin result/_BOOTIMAGE_
 	${OXFSTOOL} -f2o -i build -o ./result.img -s 8M > /dev/null
 
-	mv result/HAL.rsc bin/Core.rsc
+	
 	mv result/Core.* bin/
 
 #	rm -rf result

@@ -11,22 +11,26 @@
 
 EMULATOR=/opt/oberon/oberon-risc-emu/risc
 OXFSTOOL=/usr/bin/oxfstool
-BASEIMAGE=/opt/oberon/io/images/io.img
-OBERONBLDSRC=/opt/oberon/io/root/src/github.com/io-core/Build/
-OBERONHALSRC=/opt/oberon/io/root/src/github.com/io-core/Boot/
-OBERONDRAWSRC=/opt/oberon/io/root/src/github.com/io-core/Draw/
-OBERONEDITSRC=/opt/oberon/io/root/src/github.com/io-core/Edit/
-OBERONTESTSRC=/opt/oberon/io/root/src/github.com/io-core/Test/
-OBERONFILESSRC=/opt/oberon/io/root/src/github.com/io-core/Files/
-OBERONSYSTEMSRC=/opt/oberon/io/root/src/github.com/io-core/System/
-OBERONKERNELSRC=/opt/oberon/io/root/src/github.com/io-core/Kernel/
-OBERONMODULESSRC=/opt/oberon/io/root/src/github.com/io-core/Modules/
-OBERONOBERONSRC=/opt/oberon/io/root/src/github.com/io-core/Oberon/
-OBERONBASICSRC=/opt/oberon/io/root/src/github.com/io-core/BASIC/
-OBERONPASCALSRC=/opt/oberon/io/root/src/github.com/io-core/Pascal/
-OBERONGOSRC=/opt/oberon/io/root/src/github.com/io-core/Go/
-OBERONCSRC=/opt/oberon/io/root/src/github.com/io-core/C/
-OBERONARGPARSESRC=/opt/oberon/io/root/src/github.com/io-core/ArgParse/
+
+IOROOT=`cd ..;git rev-parse --show-toplevel;cd Boot`
+SUBMODULEROOT=`cd ..;pwd;cd Boot`
+
+BASEIMAGE=$IOROOT/images/io.img
+OBERONBLDSRC=$SUBMODULEROOT/Build/
+OBERONHALSRC=$SUBMODULEROOT/Boot/
+OBERONDRAWSRC=$SUBMODULEROOT/Draw/
+OBERONEDITSRC=$SUBMODULEROOT/Edit/
+OBERONTESTSRC=$SUBMODULEROOT/Test/
+OBERONFILESSRC=$SUBMODULEROOT/Files/
+OBERONSYSTEMSRC=$SUBMODULEROOT/System/
+OBERONKERNELSRC=$SUBMODULEROOT/Kernel/
+OBERONMODULESSRC=$SUBMODULEROOT/Modules/
+OBERONOBERONSRC=$SUBMODULEROOT/Oberon/
+OBERONBASICSRC=$SUBMODULEROOT/BASIC/
+OBERONPASCALSRC=$SUBMODULEROOT/Pascal/
+OBERONGOSRC=$SUBMODULEROOT/Go/
+OBERONCSRC=$SUBMODULEROOT/C/
+OBERONARGPARSESRC=$SUBMODULEROOT/ArgParse/
 
 tools="available"
 
@@ -62,7 +66,7 @@ if [ "$tools" == "available" ] ; then
 	cp ./Port.Tool   ./build/
 	cp ./System.Tool ./build/
 
-	cp /home/cperkins/Sync/Writing/Hosted1.hybrid ./build/Hosted.txt
+	
 
 	cp ${OBERONHALSRC}HAL.*.Mod ./build/
 

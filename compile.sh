@@ -9,8 +9,8 @@
 # batch commands that compiles the updated sources and then commands the system to shut down.
 # The new binaries are then extracted from the image for use in assemble.sh.
 
-EMULATOR=/opt/oberon/oberon-risc-emu/risc
-OXFSTOOL=/usr/bin/oxfstool
+EMULATOR=risc
+OXFSTOOL=oxfstool
 
 IOROOT=`cd ..;git rev-parse --show-toplevel;cd Boot`
 SUBMODULEROOT=`cd ..;pwd;cd Boot`
@@ -34,12 +34,15 @@ OBERONARGPARSESRC=$SUBMODULEROOT/ArgParse/
 
 tools="available"
 
-if [ ! -f ${EMULATOR} ] ; then
+EMV=`${EMULATOR} --version`
+OTV=`${OXFSTOOL} -V`
+
+if [ ! ${EMV} == "2021.8.31" ] ; then
 	echo "A risc5 emulator is required and EMULATOR must be set correctly"
 	tools="unavailable"
 fi
 
-if [ ! -f ${OXFSTOOL} ] ; then
+if [ ! ${OTV} == "0.1.2" ] ; then
 	echo "oxfstool is required and OXFSTOOL must be set correctly"
 	tools="unavailable"
 fi
@@ -57,6 +60,7 @@ if [ "$tools" == "available" ] ; then
 	echo "Building Oberon Core for supported architectures."
 	mkdir -p ./build
 	rm -rf ./build/*
+	echo "Extracting files from ${BASEIMAGE}"
 	${OXFSTOOL} -o2f -i ${BASEIMAGE} -o ./build
 
         rm ./build/x[987].txt
@@ -111,11 +115,14 @@ if [ "$tools" == "available" ] ; then
 	rm ./work.img
 	rm ./result.img
 	${OXFSTOOL} -f2o -i build -o ./work.img -s 8M  > /dev/null
-	${EMULATOR} --mem 10 --size 1800x1000x1 --leds --ouch ./work.img
+	echo "launching emulator"
+	${EMULATOR} --mem 10 --size 1600x864x1 --leds  ./work.img
+	echo "extracting produced files"
 	${OXFSTOOL} -o2f -i ./work.img -o result  > /dev/null
         mv result/Modules.bin result/_BOOTIMAGE_
+	echo "building result image"
 	${OXFSTOOL} -f2o -i build -o ./result.img -s 8M > /dev/null
-
+        echo "cleaning up"
 	
 	mv result/Core.* bin/
 

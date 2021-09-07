@@ -10,7 +10,7 @@ Batch.Run
 |> OXLinker.Link Modules ;
 |> OXLinker.Load Modules.bin ;
 |> Batch.Collect ;
-|> OXP.Compile Input.Mod/s Display.Mod/s Viewers.Mod/s ;
+|> OXP.Compile Nodes.Mod/s Input.Mod/s Display.Mod/s Viewers.Mod/s ;
 |> OXP.Compile Fonts.Mod/s MIME.Mod/s Texts.Mod/s ArgParse.Mod ;
 |> OXP.Compile Oberon.Mod/s ;
 |> OXP.Compile MenuViewers.Mod/s ;
